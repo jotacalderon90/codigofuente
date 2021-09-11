@@ -1,0 +1,63 @@
+<div class="modal fade" id="blog_modal_list">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="left btn-head" data-ng-click="ctrl.blog.sort()">
+					<i class="fa fa-sort"></i>
+				</button>
+				<h4 class="modal-title">{{ctrl.blog.title}}</h4>
+				<!--include:view/btn.close-->
+			</div>
+			<div class="modal-body" data-ng-show="ctrl.blog.coll.length > 0">
+				<!--DESKTOP-->
+				<div class="hidden-xs">
+					<div class="row">
+						<div class="col-md-6" data-ng-repeat="row in ctrl.blog.coll" data-ng-click="ctrl.pushStory('#blog_modal_list');ctrl.blog.read(row._id)" data-dismiss="modal" data-toggle="modal" data-target="#blog_modal_document">
+							<article>
+								<img src="/assets/media/img/logo.png" data-ng-src="{{row.thumb}}" alt="imagen de publicación" title="imagen de publicación"/>
+								<div class="info">
+									<h2>{{row.title}}</h2>
+									<small title="{{row.datetitle}}">{{row.datefromnow}}</small>
+								</div>
+							</article>
+						</div>
+					</div>
+					<br>
+					<br>
+					<a data-ng-click="ctrl.blog.getCollection()" data-ng-show="ctrl.blog.obtained<ctrl.blog.cant">
+						cargar más...
+						<br>
+						<span>{{ctrl.blog.obtained}}/{{ctrl.blog.cant}}</span>
+					</a>
+					<br>
+					<br>
+				</div>
+				<!--MOBILE-->
+				<article class="visible-xs" data-ng-show="ctrl.blog.coll.length > 0" data-ng-click="ctrl.pushStory('#blog_modal_list');ctrl.blog.read(ctrl.blog.coll[ctrl.blog.index]._id)" data-dismiss="modal" data-toggle="modal" data-target="#blog_modal_document">
+					<img src="/assets/media/img/logo.png" data-ng-src="{{ctrl.blog.coll[ctrl.blog.index].thumb}}" alt="imagen de publicación" title="imagen de publicación"/>
+					<div class="info">
+						<h2>{{ctrl.blog.coll[ctrl.blog.index].title}}</h2>
+						<small title="{{ctrl.blog.coll[ctrl.blog.index].datetitle}}">{{ctrl.blog.coll[ctrl.blog.index].datefromnow}}</small>
+					</div>
+					<!--<p class="text-right">{{ctrl.blog.coll[ctrl.blog.index].resume}}</p>-->
+				</article>
+			</div>
+			<div class="modal-body" data-ng-show="ctrl.blog.coll.length == 0">
+				<div class="alert alert-warning">
+					<strong>Aún no existen registros!</strong>
+				</div>
+			</div>
+			<!--MOBILE-->
+			<div class="modal-footer visible-xs" data-ng-show="ctrl.blog.coll.length > 0">
+				<p>{{ctrl.blog.index+1}}/{{ctrl.blog.cant}}</p>
+				<br>
+				<button type="button" class="btn btn-default pull-left" data-ng-click="ctrl.blog.detectSwipe='right';ctrl.blog.handleDetect_list()" data-ng-show="ctrl.blog.index!=0">
+					<i class="fa fa-arrow-left"></i>
+				</button>
+				<button type="button" class="btn btn-default pull-right" data-ng-click="ctrl.blog.detectSwipe='left';ctrl.blog.handleDetect_list()" data-ng-show="ctrl.blog.index < ctrl.blog.coll.length - 1">
+					<i class="fa fa-arrow-right"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

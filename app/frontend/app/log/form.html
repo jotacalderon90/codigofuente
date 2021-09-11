@@ -1,0 +1,26 @@
+<div class="modal fade" id="log_modal_form">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">{{ctrl.log.properties.label}}</h4>
+				<!--include:view/btn.close-->
+			</div>
+			<div class="modal-body text-left">
+				
+				<input type="date" class="form-control" data-ng-model="ctrl.log.query.date"/>
+				
+				<textarea class="form-control" rows="20" data-ng-model="ctrl.log.getDoc()._content"></textarea>
+			
+			</div>
+			<div class="modal-footer-bg"></div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" title="Buscar" data-ng-click="ctrl.log.getTotal()"> 
+					<i class="fa fa-search"></i>
+				</button>
+				<button type="button" class="btn btn-primary" title="Mapa" data-ng-click="ctrl.log.getMap()"> 
+					<i class="fa fa-map"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+<div class="modal fade" id="twitter_modal_about">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Información de {{ctrl.twitter.properties.label}}</h4>
+				<!--include:view/btn.close-->
+			</div>
+			<div class="modal-body text-justify" data-editable>
+				<!--editable-->
+				<p>Bienvenido al lector de twitter. Una aplicación experimental que aún no tiene un norte específico pero que por el momento permite agrupar un grupo de cuentas de twitter y leerlas sin tener que ingresar a twitter. En este caso tengo registrada las intendencias, gobernaciones y municipalidades. Me faltan los ministerios y más adelante todo el sector público de Chile.</p>
+				<!--/editable-->
+			</div>
+			<div class="modal-footer-bg" data-ng-show="ctrl.twitter.editHTML.canEdit"></div>
+			<div class="modal-footer" data-ng-show="ctrl.twitter.editHTML.canEdit">
+				<button type="button" class="btn btn-primary" title="Editar" data-ng-show="ctrl.twitter.editHTML.action!='edit'" data-ng-click="ctrl.twitter.editHTML.edit()"> 
+					<i class="fa fa-pencil"></i>
+				</button>
+				<button type="button" class="btn btn-primary" title="Guardar" data-ng-show="ctrl.twitter.editHTML.action=='edit'" data-ng-click="ctrl.twitter.editHTML.save()"> 
+					<i class="fa fa-save"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

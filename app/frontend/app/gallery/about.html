@@ -1,0 +1,26 @@
+<div class="modal fade" id="gallery_modal_about">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Información de {{ctrl.gallery.properties.label}}</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify" data-editable>
+				<!--editable-->
+				<p>Bienvenido a la galería de imágenes. Por el momento este módulo no tiene un norte en mi página, se hizo para un cliente que quería tener una galería de imágenes y funcionó.&nbsp;</p><br>Si te tinca publicar tus imágenes por este medio, avísame. Si quieres tener tu propia galería separada de mi página web, niun problema, esa es la idea de "Trascender".
+				<!--/editable-->
+			</div>
+			<div class="modal-footer-bg" data-ng-show="ctrl.gallery.editHTML.canEdit"></div>
+			<div class="modal-footer" data-ng-show="ctrl.gallery.editHTML.canEdit">
+				<button type="button" class="btn btn-primary" title="Editar" data-ng-show="ctrl.gallery.editHTML.action!='edit'" data-ng-click="ctrl.gallery.editHTML.edit()"> 
+					<i class="fa fa-pencil"></i>
+				</button>
+				<button type="button" class="btn btn-primary" title="Guardar" data-ng-show="ctrl.gallery.editHTML.action=='edit'" data-ng-click="ctrl.gallery.editHTML.save()"> 
+					<i class="fa fa-save"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

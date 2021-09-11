@@ -1,0 +1,58 @@
+<div class="modal fade" id="game_modal_main">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Juego</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body modal-body-full">
+				<div class="row">
+					<div class="col-md-8">
+						<canvas id="game_cv" ></canvas>
+					</div>
+					<div class="col-md-4 text-center">
+						<table>
+							<tr>
+								<td>
+									<img src="assets/media/img/game/HUD_playerIcon.png" width="50" height="50"/>
+								</td>
+								<td style="color: blue; font-size: 30px;width:50px;">1</td>
+								<td style="color: red; font-size: 30px;width:50px;">2</td>
+							</tr>
+							<tr>
+								<td>
+									<br>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<img src="assets/media/img/game/HUD_cashIcon.png" width="50" height="50"/>
+								</td>
+								<td>{{ctrl.game.moneyPlayer1}}</td>
+								<td>{{ctrl.game.moneyPlayer2}}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer-bg"></div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" id="BTN_CREATE_UNIT">Crear unidad</button>
+				<button class="btn" id="BTN_BUILD">
+					<img src="assets/media/img/game/Button_build1.png" />	
+				</button>
+				<button class="btn" id="BTN_AWAIT">
+					<img src="assets/media/img/game/Button_wait1.png" />	
+				</button>
+				<button class="btn" id="BTN_ATTACK">
+					<img src="assets/media/img/game/Button_attack1.png" />	
+				</button>
+				<button class="btn" id="BTN_FINISH">
+					<img src="assets/media/img/game/Button_endTurn1.png" />	
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

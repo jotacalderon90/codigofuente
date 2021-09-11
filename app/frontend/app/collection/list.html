@@ -1,0 +1,48 @@
+<div class="modal fade" id="collection_modal_list">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="btn-group menu-inside btn-head left">
+					<button type="button" class="dropdown-toggle btn-head" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-bars"></i>
+					</button>
+					<ul class="dropdown-menu">
+						<li data-ng-click="ctrl.pushStory('#collection_modal_list');ctrl.collection.new()" data-dismiss="modal" data-ng-show="ctrl.object.isReadMode()">
+							<i class="fa fa-plus"></i>
+						</li>
+						<li data-ng-click="ctrl.collection.import()" data-ng-show="ctrl.object.isReadMode()">
+							<i class="fa fa-upload"></i>
+						</li>
+						<li data-ng-click="ctrl.collection.search()" data-ng-show="ctrl.object.isReadMode()">
+							<i class="fa fa-search"></i>
+						</li>
+						<li data-ng-click="ctrl.collection.getTotal()" data-ng-show="ctrl.object.isReadMode()">
+							<i class="fa fa-refresh"></i>
+						</li>
+						<li data-dismiss="modal" data-ng-click="ctrl.collection.selectObject()">
+							<i class="fa fa-cubes"></i>
+						</li>
+					</ul>
+				</div>
+				<h4 class="modal-title">
+					<span data-ng-show="ctrl.object.action===null">Documentos</span>
+					<span data-ng-show="ctrl.object.action!==null">{{ctrl.object.doc.label}}</span>
+				</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<div class="list-group">
+					<a class="list-group-item" data-ng-repeat="row in ctrl.collection.coll" data-ng-click="ctrl.pushStory('#collection_modal_list');ctrl.collection.read(row._id)">
+						<span data-ng-repeat="(key, value) in ctrl.object.getOutput()">{{key}}:<strong>{{row[key]}}</strong><br></span>
+					</a>
+				</div>
+				<a data-ng-show="ctrl.object.action!==null">
+					<span data-ng-click="ctrl.collection.getCollection()" data-ng-show="ctrl.collection.obtained<ctrl.collection.cant">cargar más...</span>
+					<span class="text text-info pull-right">{{ctrl.collection.obtained}}/{{ctrl.collection.cant}}</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

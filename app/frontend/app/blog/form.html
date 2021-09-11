@@ -1,0 +1,86 @@
+<div class="modal fade" id="blog_modal_form">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="left btn-head" title="documento" data-dismiss="modal" data-toggle="modal" data-target="#blog_modal_document" data-ng-click="ctrl.pushStory('#blog_modal_form');ctrl.blog.read(ctrl.blog.getDoc()._id)" data-ng-show="!ctrl.blog.isCreateMode()">
+					<i class="fa fa-wpforms"></i>
+				</button>
+				<h4 class="modal-title" data-ng-show="ctrl.blog.isCreateMode()">
+					Blog <small>Nuevo</small>
+				</h4>
+				<h4 class="modal-title" data-ng-show="ctrl.blog.isReadMode() || ctrl.blog.isEditMode()">
+					{{ctrl.blog.doc.title}}
+				</h4>
+				<!--include:view/btn.close-->
+			</div>
+			<div class="modal-body text-justify">
+				<div class="form-group">
+					<label>Título</label>
+					<input type="text" class="form-control" placeholder="Título" data-ng-model="ctrl.blog.getDoc().title" data-ng-blur="ctrl.blog.titleOnBlur()" data-ng-disabled="ctrl.blog.isReadMode()">
+				</div>
+				<div class="form-group">
+					<label>URL</label>
+					<input type="text" class="form-control" placeholder="URL" data-ng-model="ctrl.blog.getDoc().uri" data-ng-disabled="ctrl.blog.isReadMode()">
+				</div>
+				<div class="form-group" data-ng-show="!ctrl.blog.isCreateMode()">
+					<label>Imagen</label>
+					<br>
+					<img src="/assets/media/img/logo.png" data-ng-src="{{ctrl.blog.getDoc().img}}" height="200" alt="imagen de publicación" title="imagen de publicación"/>
+					<form method="post" action="{{ctrl.blog.getPostFileUpload()}}" data-ng-show="ctrl.blog.isEditMode()" enctype="multipart/form-data">
+						<input type="file" class="form-control" name="file"/>
+						<button type="submit" class="btn btn-primary">subir</button>
+					</form>
+					<label>Img</label>
+					<input type="text" class="form-control" data-ng-model="ctrl.blog.getDoc().img" data-ng-disabled="ctrl.blog.isReadMode()"/>
+					<br>
+					<label>Thumb</label>
+					<input type="text" class="form-control" data-ng-model="ctrl.blog.getDoc().thumb" data-ng-disabled="ctrl.blog.isReadMode()"/>
+				</div>
+				<div class="form-group">
+					<label>Resumen</label>
+					<input type="text" class="form-control" placeholder="Resumen" data-ng-model="ctrl.blog.getDoc().resume" data-ng-disabled="ctrl.blog.isReadMode()">
+				</div>
+				<div class="form-group">
+					<label>Contenido</label>
+					<input type="text" class="form-control" id="blog_input_content" placeholder="Contenido" data-ng-disabled="ctrl.blog.isReadMode()">
+				</div>
+				<div class="form-group">
+					<label>Tags</label>
+					<input id="blog_input_tag" type="text" class="form-control" placeholder="Agregar tag" data-ng-model="ctrl.blog.getDoc().tagbk" data-ng-disabled="ctrl.blog.isReadMode()" data-ng-keypress="ctrl.blog.addTag($event)">
+					<ul class="list-unstyled list-inline">
+						<li data-ng-repeat="row in ctrl.blog.getDoc().tag">
+							<span class="label label-default">
+								{{row}} 
+								<i class="fa fa-close text-danger" data-ng-click="ctrl.blog.removeTag($index)" data-ng-show="!ctrl.blog.isReadMode()"></i>
+							</span>
+						</li>
+					</ul>
+				</div>
+				<div class="form-group">
+					<label>Tag Principal</label>
+					<select class="form-control" data-ng-model="ctrl.blog.getDoc().tag_main" data-ng-disabled="ctrl.blog.isReadMode()">
+						<option data-ng-repeat="row in ctrl.blog.getDoc().tag">{{row}}</option>
+					</select>
+				</div>
+				<br>
+				<br>
+				<br>
+			</div>
+			<div class="modal-footer-bg" data-ng-show="ctrl.blog.showFooter()"></div>
+			<div class="modal-footer" data-ng-show="ctrl.blog.showFooter()">
+				<button type="button" class="btn btn-primary" title="Crear" data-ng-click="ctrl.blog.create()" data-ng-show="ctrl.blog.isCreateMode()">
+					<i class="fa fa-check"></i>
+				</button>
+				<button type="button" class="btn btn-success" title="Actualizar" data-ng-click="ctrl.blog.update()" data-ng-show="ctrl.blog.isEditMode()">
+					<i class="fa fa-check"></i>
+				</button>
+				<button type="button" class="btn btn-danger" title="Eliminar" data-ng-click="ctrl.blog.delete()" data-ng-show="ctrl.blog.isEditMode()">
+					<i class="fa fa-trash"></i>
+				</button>
+				<button type="button" class="btn btn-default" data-ng-click="ctrl.blog.edit()" data-ng-show="ctrl.blog.isReadMode()" title="Editar">
+					<i class="fa fa-pencil"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

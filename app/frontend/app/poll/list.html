@@ -1,0 +1,66 @@
+<div class="modal fade" id="poll_modal_list">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="left btn-head" data-ng-click="ctrl.pushStory('#poll_modal_list');ctrl.poll.new()" data-dismiss="modal" data-toggle="modal" data-target="#poll_modal_form">
+					<i class="fa fa-plus"></i>
+				</button>
+				<h4 class="modal-title">
+					<span>{{ctrl.poll.properties.title}}</span>
+				</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Título</th>
+							<th>Estado</th>
+							<th class="text-right">
+								<button class="btn btn-xs btn-default" data-ng-click="ctrl.poll.getTotal()">
+									<i class="fa fa-refresh"></i>
+								</button>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-ng-repeat="doc in ctrl.poll.coll">
+							<td>{{ctrl.poll.obtained + $index + 1 - ctrl.poll.coll.length}}</td>
+							<td>{{doc.title}}</td>
+							<td>{{doc.status}}</td>
+							<td class="text-right">
+								<button class="btn btn-default btn-xs" data-ng-click="ctrl.pushStory('#poll_modal_list');ctrl.poll.select(doc)" >
+									<span class="fa fa-eye"></span>
+								</button>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="4">
+								<nav>
+									<ul class="pagination pagination-sm">
+										<li>
+											<a data-ng-click="ctrl.poll.gotoFirstPage()" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+										</li>
+										<li data-ng-repeat="page in ctrl.poll.getPages()" data-ng-class="ctrl.poll.isSelected(page)">
+											<a data-ng-click="ctrl.poll.gotoPage(page)"><span aria-hidden="true">{{page}}</span></a>
+										</li>
+										<li>
+											<a data-ng-click="ctrl.poll.gotoLastPage()" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+										</li>
+									</ul>
+								</nav>
+								<p>Resultado de la b&uacute;squeda: {{ctrl.poll.cant|number}} documentos</p>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+				
+			</div>
+		</div>
+	</div>
+</div>

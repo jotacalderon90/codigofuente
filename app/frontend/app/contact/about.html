@@ -1,0 +1,27 @@
+<div class="modal fade" id="contact_modal_about">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Acerca de</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<p>Si desea enviar notificaciones a sus contactos, deberá solicitar sus códigos PUSH y guardarlos en esta aplicación. Debe considerar que si su contacto desactiva PUSH, las notificaciones que usted le envíe se perderán en la red.</p>
+				<p>Para recibir notificaciones de sus contactos deberá compartir su código PUSH y al igual que ellos, si lo desactiva, el código se eliminará y las notificaciones que sus contactos le envíen, se perderán en la red. Si lo vuelve activar, el código será otro, por ende deberá compartirlo nuevamente con aquellos que desee mantener una conexión por esta aplicación.</p>
+				<button class="btn btn-info btn-block" data-ng-click="ctrl.contact.addMyself()">
+					Pincha aquí para agregarte a ti mismo
+				</button>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-default" type="button" data-toggle="modal" data-target="#contact_modal_list" data-dismiss="modal">
+					<i class="fa fa-users"></i>
+				</button>
+				<button class="btn btn-default" type="button" data-toggle="modal" data-target="#contact_modal_form" data-dismiss="modal">
+					<i class="fa fa-user-plus"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

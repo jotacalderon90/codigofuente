@@ -1,0 +1,22 @@
+<div class="text-center jumbotron message_form">
+	<p>{{ctrl.message.properties.label}}</p>
+	<input class="form-control" type="text" placeholder="Nombre" data-ng-model="ctrl.message.newdoc.name">
+	<input class="form-control" type="text" placeholder="Email" data-ng-model="ctrl.message.newdoc.email">
+	<input class="form-control" type="text" placeholder="Asunto" data-ng-model="ctrl.message.newdoc.subject">
+	<input class="form-control" type="text" placeholder="Mensaje" data-ng-model="ctrl.message.newdoc.message">
+	
+	<!--if:doc.config.recaptcha.enabled-->
+	<div class="g-recaptcha" data-sitekey="{{data:doc.config.recaptcha.public}}" ></div>
+	<br />
+	<!--/if-->
+	
+	<button type="submit" class="btn btn-block" data-ng-click="ctrl.message.create()">Enviar</button>
+	<p class="message_log"></p>
+
+</div>
+	<!--
+<input class="form-control" placeholder="Email" data-ng-model="ctrl.message.newdoc.email" type="text" />
+<br>
+<textarea class="form-control" placeholder="Mensaje" rows="5" data-ng-model="ctrl.message.newdoc.message" ></textarea>
+<br>-->
+				

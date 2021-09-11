@@ -1,0 +1,59 @@
+
+<template id="component_promise_prompt">
+	<div class="modal fade" id="promise_modal_prompt">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">{{title}}</h4>
+				</div>
+				<div class="modal-body text-justify">
+					<input class="form-control" v-model="value"/>
+				</div>
+				<div class="modal-footer-bg"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary pull-left" title="Cancelar" @click="reject()"> 
+						<i class="fa fa-close"></i>
+					</button>
+					<button type="button" class="btn btn-primary" title="Aceptar" @click="resolve()"> 
+						<i class="fa fa-check"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	Vue.component('prompt',{
+		data: function(){
+			return {
+				title: '',
+				value: ''
+			}
+		},
+		methods: {
+			load: function(title,def){
+				this.title = title;
+				this.value = def;
+				return new Promise((resolve,reject)=>{
+					this.onResolve = resolve;
+					this.onReject = reject;
+					$('#promise_modal_prompt').modal('show');
+				});
+			},
+			resolve: function(){
+				$('#promise_modal_prompt').modal('hide');
+				this.onResolve(this.value);
+			},
+			reject: function(){
+				$('#promise_modal_prompt').modal('hide');
+				this.onReject(null);
+			}
+		},
+		mounted: function(){
+			console.log('prompt');
+			this.$parent.prompt = this;
+		},
+		template: '#component_promise_prompt',
+	});
+</script>

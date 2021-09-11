@@ -1,0 +1,50 @@
+#chat #chat_modal_room .modal-content{
+	height: 100%;
+}
+#chat #chat_modal_room .modal-body{
+	padding: 0px;
+	height: calc(100% - 110px);
+	overflow: hidden;
+	width: 100%;
+}
+#chat #chat_modal_room .modal-footer{
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+}
+
+#chat_list{
+	width: 100%;
+	height: 99%;
+	overflow: auto;
+	background: none;
+	margin-top: 1%;
+}
+#chat_list .list-group-item{
+	background: #EEEEEE;
+	color: #444;
+	border: 0;
+	margin: 10px;
+	opacity: 0.9;
+	border-radius: 10px;
+	clear: both;
+	width: auto;
+	max-width: auto;
+	text-align: left;
+}
+#chat_list small{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: 10px;
+}
+#chat_list p{
+	margin: 0;
+	max-width: 80%;
+	margin-right: 30px;
+}
+#chat_input_message{
+	border-radius: 0px;
+	background: #EEEEEE;
+	color: #444;
+}

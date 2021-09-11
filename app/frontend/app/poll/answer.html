@@ -1,0 +1,20 @@
+<div class="modal fade" id="poll_modal_answer">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">{{ctrl.poll.answer_document.title}}</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<form method="POST" onSubmit="return confirm('Confirme respuesta seleccionada');" action="temporal">
+					<div class="poll-content"></div>
+					<div class="text-center">
+						<button class="btn btn-lg btn-primary" data-ng-repeat="row in ctrl.poll.answer_document.option" name="option" value="{{row}}" type="submit" >{{row}}</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

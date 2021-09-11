@@ -1,0 +1,32 @@
+<div class="modal fade" id="push_modal_form">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Push</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<div data-ng-show="ctrl.push.subscription==null">
+					<button class="btn btn-block btn-primary button btn-subscribe" data-ng-click="ctrl.push.subscribe()">Activar</button>
+				</div>
+				<div data-ng-show="ctrl.push.subscription!=null">
+					<pre><code class="js-subscription-json" id="push_to_copy"></code></pre>
+					<!--<button class="btn btn-block btn-success" data-ng-click="ctrl.copy('push_to_copy')">copiar</button>-->
+					<button class="btn btn-block btn-warning button btn-unsubscribe" data-ng-click="ctrl.push.unsubscribe()">Desactivar</button>
+				</div>
+			</div>
+			
+			<div class="modal-footer-bg"></div>
+			<div class="modal-footer">
+				<button class="btn btn-default" type="button" data-toggle="modal" data-target="#push_modal_share" data-dismiss="modal" data-ng-show="ctrl.push.subscription!=null">
+					<i class="fa fa-qrcode"></i>
+				</button>
+				<button class="btn btn-default" type="button" data-toggle="modal" data-target="#push_modal_about" data-dismiss="modal">
+					<i class="fa fa-question-circle"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,35 @@
+<div class="modal fade" id="collection_modal_document">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="left btn-head" title="Formulario" data-ng-click="ctrl.pushStory('#collection_modal_document');ctrl.collection.openForm()">
+					<i class="fa fa-file-code-o"></i>
+				</button>
+				<h4 class="modal-title" >
+					<span data-ng-show="ctrl.collection.isCreateMode()">{{ctrl.object.doc.label}} <small>Nuevo</small></span>
+					<span data-ng-show="ctrl.collection.isReadMode() || ctrl.collection.isEditMode()"><small>{{ctrl.collection.doc._id}}</small></span>
+				</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<textarea class="form-control" rows="20" data-ng-model="ctrl.collection.getDoc()._content" data-ng-disabled="ctrl.collection.isReadMode()"></textarea>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-ng-click="ctrl.collection.create()" data-ng-show="ctrl.collection.isCreateMode()" title="Crear">
+					<i class="fa fa-check"></i>
+				</button>
+				<button type="button" class="btn btn-danger" data-ng-click="ctrl.collection.delete()" data-ng-show="ctrl.collection.isEditMode()" title="Eliminar">
+					<i class="fa fa-trash"></i>
+				</button>
+				<button type="button" class="btn btn-default" data-ng-click="ctrl.collection.edit()" data-ng-show="ctrl.collection.isReadMode()" title="Editar">
+					<i class="fa fa-pencil"></i>
+				</button>
+				<button type="button" class="btn btn-success" data-ng-click="ctrl.collection.update()" data-ng-show="ctrl.collection.isEditMode()" title="Actualizar">
+					<i class="fa fa-check"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

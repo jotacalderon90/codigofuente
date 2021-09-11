@@ -1,0 +1,378 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	background: black;
+}
+body{
+	width: 100%;
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: 'roboto',Arial,Helvetica,sans-serif;
+	color: #444;
+}
+pre {
+	background: black;
+	opacity: 0.7;
+	color: white;
+}
+canvas{
+	max-width: 100%;
+}
+img,audio{
+	max-width: 100%;
+}
+a {
+	color: #efe9e8;
+}
+a:hover{
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+}
+h2{
+	font-size: 16px;
+}
+iframe{
+	width: 100%;
+	height: auto;
+	max-width: 100%;
+	max-height: 300px;
+}
+.block{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.block .menu-inside{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.fa{
+	font-size: 24px;
+}
+.btn-head{
+	background: #EEEEEE;
+	color: #444;
+	border: 0;
+	width: 50px;
+	height: 50px;
+}
+/*DROPDOWN*/
+.dropdown-menu{
+	background: #EEEEEE;
+	padding: 0px;
+	margin: 0px;
+	border-radius: 0px;
+	color: #444;
+	opacity: 0.95;
+}
+.dropdown-menu li{
+	padding: 10px;
+	cursor: pointer;
+}
+.dropdown-menu li:active > span{
+	font-weight: bold;
+}
+.dropdown-menu li:hover > span{
+	font-weight: bold;
+}
+/*MODAL*/
+.modal-dialog{
+	margin: 0;
+	width: 100%;
+	height: 100%
+}
+.modal-header{
+	padding: 0px;
+	height: 50px;
+	border: 0px;
+	background: #EEEEEE;
+}
+.modal-header h4{
+	/*float: left;
+	margin-left: 70px;*/
+}
+.modal-header .modal-title{
+	/*margin-bottom: 10px;*/
+	width: 70%;
+	margin: auto;
+	line-height: 15px;
+	margin-top: 15px;
+}
+button.close{
+	background: black;
+	opacity: 1;
+	text-shadow: none;
+}
+button.close:hover{
+	opacity: 1;
+	color: white;
+	font-weight: bold;
+}
+.modal-content{
+	min-height: 100%;
+	max-height: 100%;
+	height: auto;
+	background: none;
+	color: #444;
+	text-align: center;
+	overflow: auto;
+	border-radius: 0px;
+}
+.modal-body{
+	color: white;
+	padding-bottom: 100px;
+}
+.modal-footer{
+	border-top:0px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	right: 0;
+	padding: 15px;
+}
+.modal-footer .btn{
+	padding: 3px 6px;
+}
+.modal-footer-bg{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	background: black;
+	opacity: 0.75;
+	filter: blur(1px);
+}
+.left{
+	position: absolute;
+	left: 0;
+}
+.right{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+@media (min-width: 768px) {
+	.modal-body{
+		width: 50%;
+		margin: auto;
+	}
+}
+/*input*/
+.form-control{
+	border: 0px;
+	background: black;
+	opacity: 0.8;
+	color: white;
+}
+.btn-default{
+	background: none;
+	color: white;
+}
+.btn-default:hover{
+	background: none;
+	color: white;
+}
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control{
+	background: black;
+	opacity: 0.8;
+}
+/*LIST-GROUP*/
+.list-group .list-group-item{
+	background: black;
+	opacity: 0.7;
+	margin-bottom: 10px;
+	border: 0px;
+	color: white;
+}
+.list-group .list-group-item:hover,
+.list-group .list-group-item:focus,
+.list-group .list-group-item:active{
+	background: black;
+	opacity: 0.7;
+	color: white;
+}
+/*BTN-GROUP-JUSTIFY*/
+.btn-group-vertical{
+	width: 100%;
+}
+
+/*JUMBOTRON*/
+.jumbotron{
+	background: #EEEEEE;
+	opacity: 0.8;
+	padding: 10px;
+}
+.jumbotron .btn-default{
+	color: #444;
+}
+.jumbotron .btn-default:hover{
+	color: black;
+}
+
+/*LOGGER*/
+.alert{
+	margin-top: 20px;
+	background: black;
+	opacity: 0.7;
+}
+/*well in collapse*/
+.well{
+	background-color: inherit;
+	border: 0px;
+}
+
+
+
+.g-recaptcha{
+	overflow: hidden;
+}
+.astable{
+	display: table;
+}
+
+
+
+
+/*****************/
+/*CHECKBOX SLIDER*/
+/*****************/
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+.switch input {
+	display:none;
+}
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+input:checked + .slider {
+	background-color: #0069ff;
+	opacity: 0.7;
+}
+input:focus + .slider {
+	box-shadow: 0 0 1px #0069ff;
+}
+input:checked + .slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+.slider.round {
+	border-radius: 34px;
+}
+.slider.round:before {
+	border-radius: 50%;
+}
+
+
+
+
+/**********/
+/*CKEDITOR*/
+/**********/
+textarea.cke_source{
+	background-color: #000!important;
+}
+
+
+.loader{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: black;
+	z-index: 9999;
+	opacity: 0.5;
+}
+.loader i{
+	color: white;
+	width: 25px;
+	height: 25px;
+	
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+.opacity{
+	opacity: 0.5;
+}
+
+
+
+.modal-body-full{
+	width: 100%;
+}
+
+/***************/
+/*AUTOCOMPLETAR*/
+/***************/
+.ui-autocomplete{
+	z-index: 9999!important;
+}
+
+/*MAPPOPUP*/
+.leaflet-popup ,.leaflet-zoom-animated{
+	opacity: 0.8!important;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip{
+	background: black!important;
+	color: wheat!important;
+}
+
+
+/*BTN CLOSE DROPDOWN RIGHT*/
+.right .dropdown-menu{
+	right: 0;
+	left: auto;
+}
+
+
+/*MD4*/
+@media (max-width: 990px) {	
+	.col-md-4{
+		width: 50%;
+		float: left;
+	}
+	.btn-default .fa{
+		font-size: 14px;
+	}
+	.btn-default span{
+		font-size: 12px;
+	}
+}
+
+.autoheight {
+    height:100%;
+}

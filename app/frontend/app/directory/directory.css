@@ -1,0 +1,29 @@
+#directory_modal_list .modal-body{
+	width: 100%;
+}
+
+/***********/
+/*DIRECTORY*/
+/***********/
+#ul_directory * { list-style:none;}
+#ul_directory li{ line-height:180%;color:white;}
+#ul_directory input{position: absolute;left: -1000em;}
+#ul_directory .folder:before{ content:"\025b8"; margin-right:4px;}
+#ul_directory input:checked ~ .folder:before{ content:"\025be";}
+#ul_directory .inside{display: none;margin-left: -30px;}
+#ul_directory input:checked ~ ul{display:block;}
+#ul_directory .selected{color: white;}
+/**********/
+/*DROPZONE*/
+/**********/
+#dropzone{
+	border: dotted 3px lightgray;
+	text-align:center;
+	background: inherit;
+	min-height: 300px;
+	line-height:250px;
+	font-size: 32px;
+}
+.hover{
+	border: dotted 3px green!important;
+}

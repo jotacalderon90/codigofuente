@@ -1,0 +1,24 @@
+<div class="modal fade" id="product_modal_about">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Información de {{ctrl.product.properties.label}}</h4>
+				<!--include:view/btn.close-->
+			</div>
+			<div class="modal-body text-justify" data-editable>
+				<!--editable-->
+				<p>Bienvenido al catálogo de productos. Esta sección nació por la continua necesidad de clientes por tener un catálogo de productos en Internet. Si bien, hoy en día, las herramientas de este tipo abundan, me quedo con Trascender, el cual me deja interactuar con los clientes sin tener un banco "online" al medio observando todo lo que transo. No es tanto tampoco XD. El pago automático de todas maneras es posible pero tiene su precio $ ¿obvio no? :)<br><br>En mi catálogo divido los productos en las clases particulares y los servicios directamente.<br><br>Al igual que el blog, esta aplicación permite tener más categorías y asignarle roles específicos.<br><br>Si te tinca publicar tus productos por este medio, avísame. Si quieres tener tu propio catálogo separado de mi página web, niun problema, esa es la idea de "Trascender".</p>
+				<!--/editable-->
+			</div>
+			<div class="modal-footer-bg" data-ng-show="ctrl.product.editHTML.canEdit"></div>
+			<div class="modal-footer" data-ng-show="ctrl.product.editHTML.canEdit">
+				<button type="button" class="btn btn-primary" title="Editar" data-ng-show="ctrl.product.editHTML.action!='edit'" data-ng-click="ctrl.product.editHTML.edit()"> 
+					<i class="fa fa-pencil"></i>
+				</button>
+				<button type="button" class="btn btn-primary" title="Guardar" data-ng-show="ctrl.product.editHTML.action=='edit'" data-ng-click="ctrl.product.editHTML.save()"> 
+					<i class="fa fa-save"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

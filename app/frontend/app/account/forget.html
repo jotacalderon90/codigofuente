@@ -1,0 +1,27 @@
+<div class="modal fade" id="account_modal_forget">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Olvidaste tu password</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<form action="/account/forget" method="POST">
+					<input class="form-control" placeholder="Email" name="email" type="text" />
+					<br>
+					
+					<!--if:doc.config.recaptcha && doc.config.recaptcha.enabled-->
+					<div class="form-group">
+						<div class="g-recaptcha" data-sitekey="{{data:doc.config.recaptcha.public}}"></div>
+					</div>
+					<!--/if-->
+					
+					<br>
+					<button type="submit" class="btn btn-lg btn-success btn-block" >Recupera tu password</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

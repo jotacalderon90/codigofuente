@@ -1,0 +1,23 @@
+<div class="modal fade" id="menu_modal_list">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">{{ctrl.menu.properties.label}}</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<div class="row">
+					<div class="col-md-4" data-ng-repeat="row in ctrl.menu.coll" data-ng-show="ctrl[row.name].showApp()">
+						<div class="jumbotron">
+							<button class="btn btn-default btn-block" data-ng-click="ctrl.open(row,'#menu_modal_list')" data-dismiss="modal">
+								<i class="fa" data-ng-class="row.icon"></i> <span>{{((row.label)?row.label:row.name)}}</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

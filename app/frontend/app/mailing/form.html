@@ -1,0 +1,85 @@
+<div class="modal fade" id="mailing_modal_form">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">{{ctrl.mailing.properties.label}}</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+				<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<div class="form-group">
+					<input type="text" class="form-control input-sm" data-ng-model="ctrl.mailing.newdoc.subject" placeholder="Asunto del email"/>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<input type="text" class="form-control" data-ng-model="ctrl.mailing.newdoc.to" id="to" placeholder="Emails separados por coma.">
+						<div class="input-group-btn">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+							<ul class="dropdown-menu dropdown-menu-right">
+								<li><a data-ng-click="ctrl.mailing.selectRoles('*')">todos</a></li>
+								<li><a data-ng-repeat="rol in ctrl.mailing.users_tag" data-ng-click="ctrl.mailing.selectRoles(rol)">{{rol}}</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Tipo de envío</label>
+					<select class="form-control" data-ng-model="ctrl.mailing.newdoc.tipo_envio">
+						<option></option>
+						<option>plain</option>
+						<option>template</option>
+					</select>
+				</div>
+				<div data-ng-show="ctrl.mailing.newdoc.tipo_envio=='plain'">		
+					<input type="text" class="form-control input-sm" data-ng-model="ctrl.mailing.newdoc.message" placeholder="Mensaje"/>
+					<br>
+					<br>
+				</div>
+				<div data-ng-show="ctrl.mailing.newdoc.tipo_envio=='template'">
+					<div class="form-group">
+						<label>Seleccione plantilla para enviar mails</label>
+						<select class="form-control" data-ng-model="ctrl.mailing.template" data-ng-change="ctrl.mailing.selectTemplate()">
+							<option></option>
+							<option data-ng-repeat="row in ctrl.mailing.templates">{{row}}</option>
+						</select>
+					</div>
+					<iframe style="width:100%;min-height: 500px;border:0px;"></iframe>
+					<table class="table" data-ng-show="ctrl.mailing.template_metadata">
+						<thead>
+							<tr>
+								<th>Metadata</th>
+								<th>Tipo</th>
+								<th>Valor</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="row in ctrl.mailing.template_metadata">
+								<td>{{row.label}}</td>
+								<td>
+									<select data-ng-model="row.type" class="form-control input-sm">
+										<option value="static">Definir valor</option>
+										<option value="document">Usar valor del usuario</option>
+									</select>
+								</td>
+								<td>
+									<input type="text" class="form-control input-sm" data-ng-model="row.value" data-ng-show="row.type=='static'"/>
+								</td>
+								<td>
+									<button class="btn btn-warning btn-xs" data-ng-click="ctrl.mailing.template_metadata.splice($index,1)">
+										<i class="fa fa-trash"></i>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<button class="btn btn-primary btn-block" data-ng-click="ctrl.mailing.continue()">
+				Continuar
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+

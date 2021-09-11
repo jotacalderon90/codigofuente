@@ -1,0 +1,73 @@
+<div class="modal fade" id="story_modal_list">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="btn-group menu-inside btn-head left">
+					<button type="button" class="dropdown-toggle btn-head" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-bars"></i>
+					</button>
+					<ul class="dropdown-menu">
+						<li data-dismiss="modal" data-ng-click="ctrl.story.showCollectionInMap()">
+							<i class="fa fa-map-marker"></i>
+						</li>
+						<li data-ng-click="ctrl.story.sort()">
+							<i class="fa fa-sort"></i>
+						</li>
+					</ul>
+				</div>
+				<h4 class="modal-title">{{ctrl.story.title}}</h4>
+				<!--include:view/btn.close-->
+			</div>
+			<div class="modal-body" data-ng-show="ctrl.story.coll.length > 0">
+				<!--DESKTOP-->
+				<div class="hidden-xs">
+					<div class="row">
+						<div class="col-md-6" data-ng-repeat="row in ctrl.story.coll" data-ng-click="ctrl.pushStory('#story_modal_list');ctrl.story.read(row._id);ctrl.story.index=$index;" data-dismiss="modal" data-toggle="modal" data-target="#story_modal_document">
+							<article>
+								<img src="/assets/media/img/logo.png" data-ng-src="{{row.thumb}}" alt="imagen de publicación" title="imagen de publicación"/>
+								<div class="info">
+									<h2>{{row.title}}</h2>
+									<small title="{{row.datetitle}}">{{row.datefromnow}}</small>
+								</div>
+							</article>
+						</div>
+					</div>
+					<br>
+					<br>
+					<a data-ng-click="ctrl.story.getCollection()" data-ng-show="ctrl.story.obtained<ctrl.story.cant">
+						cargar más...
+						<br>
+						<span>{{ctrl.story.obtained}}/{{ctrl.story.cant}}</span>
+					</a>
+					<br>
+					<br>
+				</div>
+				<!--MOBILE-->
+				<article class="visible-xs" data-ng-show="ctrl.story.coll.length > 0" data-ng-click="ctrl.pushStory('#story_modal_list');ctrl.story.read(ctrl.story.coll[ctrl.story.index]._id)" data-dismiss="modal" data-toggle="modal" data-target="#story_modal_document">
+					<img src="/assets/media/img/logo.png" data-ng-src="{{ctrl.story.coll[ctrl.story.index].thumb}}" alt="imagen de publicación" title="imagen de publicación"/>
+					<div class="info">
+						<h2>{{ctrl.story.coll[ctrl.story.index].title}}</h2>
+						<small title="{{ctrl.story.coll[ctrl.story.index].datetitle}}">{{ctrl.story.coll[ctrl.story.index].datefromnow}}</small>
+					</div>
+					<!--<p class="text-right">{{ctrl.story.coll[ctrl.story.index].resume}}</p>-->
+				</article>
+			</div>
+			<div class="modal-body" data-ng-show="ctrl.story.coll.length == 0">
+				<div class="alert alert-warning">
+					<strong>Aún no existen registros!</strong>
+				</div>
+			</div>
+			<!--MOBILE-->
+			<div class="modal-footer visible-xs" data-ng-show="ctrl.story.coll.length > 0">
+				<p>{{ctrl.story.index+1}}/{{ctrl.story.cant}}</p>
+				<br>
+				<button type="button" class="btn btn-default pull-left" data-ng-click="ctrl.story.leftArrow()" data-ng-show="ctrl.story.showLeftArrow()">
+					<i class="fa fa-arrow-left"></i>
+				</button>
+				<button type="button" class="btn btn-default pull-right" data-ng-click="ctrl.story.rightArrow()" data-ng-show="ctrl.story.showRightArrow()">
+					<i class="fa fa-arrow-right"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

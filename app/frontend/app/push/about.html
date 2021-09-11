@@ -1,0 +1,30 @@
+<div class="modal fade" id="push_modal_about" >
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Acerca de</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<p>Push es un protocolo de internet al igual que http, https y socket.</p>
+				<p>La particularidad de éste protocolo es que transmite mensajes desde el servidor hacia su disposivo aunque la aplicación se encuentre cerrada.</p>
+				<p>Al activar PUSH, el navegador generará un código en un formato llamado JSON.</p>
+				<p>Posteriormente dicha información se codificará en un código QR.</p>
+				<!--<p>Para recibir notificaciones de sus contactos deberá compartir el código con ellos.</p>
+				<p>Si desactiva PUSH el código se eliminará y sus contactos ya no podrán contactarlo por esta aplicación.</p>
+				<p>Si vuelve a generar el código, será otro, por ende deberá volver a compartir el código con ellos.</p>-->
+			</div>
+			<div class="modal-footer-bg"></div>
+			<div class="modal-footer">
+				<button class="btn btn-default" type="button" data-toggle="modal" data-target="#push_modal_share" data-dismiss="modal" data-ng-show="ctrl.push.subscription!=null">
+					<i class="fa fa-qrcode"></i>
+				</button>
+				<button class="btn btn-default" type="button" data-toggle="modal" data-target="#push_modal_form" data-dismiss="modal">
+					<i class="fa fa-gear"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

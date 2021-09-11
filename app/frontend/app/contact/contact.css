@@ -1,0 +1,14 @@
+#contact .list-group > div{
+	margin-bottom: 5px;
+}
+#contact .list-group .list-group-item{
+	margin-bottom: 0px;
+}
+#contact .list-group .list-group-item:hover{
+	background: #EEEEEE;
+	color: #444;
+}
+#contact_qr_reader{
+	width: 100%;
+	height: 100%;
+}

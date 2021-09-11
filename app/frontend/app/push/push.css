@@ -1,0 +1,10 @@
+#push pre{
+	max-height: 200px;
+	overflow: auto;
+}
+#push canvas{
+	margin: auto;
+}
+#push_modal_about .modal-body{
+	padding-bottom: 50px;
+}

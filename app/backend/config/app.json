@@ -1,0 +1,68 @@
+{
+	"properties": {
+		"port": 80,
+		"host": "http://localhost:80",
+		"admin": "demo@demo.cl",
+		"secret": "trascender-con-sso",
+		"cors": true,
+		"views": "/app/frontend/app/",
+		"meta": {
+			"keywords": "informática,software,programación,pwa,algoritmo",
+			"description": "CMS basado en trascender",
+			"author": "@jotace",
+			"title": "Trascender - PWA"
+		}
+	},
+	"database": {
+		"url": "mongodb://127.0.0.1:27017",
+		"db": "trascender"
+	},
+	"smtp": {
+		"enabled": false,
+		"host": "smtp.gmail.com",
+		"secureConnection": true,
+		"port": 587,
+		"user": "",
+		"pass": ""
+	},
+	"recaptcha": {
+		"enabled": false,
+		"public": "",
+		"private": ""
+	},
+	"google": {
+		"auth": {
+			"enabled": false,
+			"clientId": "",
+			"clientSecret": "",
+			"redirect": ""
+		}
+	},
+	"on": {
+		"login": "/",
+		"logout": "/user/login"
+	},
+	"push": {
+		"public": "BJutcL0PfojyGawD69JDnmwiP-TtwdNJ9G9t_894BcJh2Be_C_fyGk0UwMYMSsqV6XwMT0H7Qh02dybiaWSwzLU",
+		"private": "Xq5pxD8XN3fOZchl_PX616lG6ueCFaMKKaCfgn5OQPA"
+	},
+	"pwa":{
+		"manifest": {			
+			"name": "Trascender - PWA",
+			"short_name": "Trascender",
+			"start_url": "/",
+			"display": "fullscreen",
+			"background-color": "#ccc",
+			"theme-color": "#5FAAES",
+			"icons": [{
+				"src": "/assets/media/img/icons/144x144.png",
+				"sizes": "144x144",
+				"type": "image/png"
+			}, {
+				"src": "/assets/media/img/logo.png",
+				"sizes": "100x100",
+				"type": "image/png"
+			}]
+		}
+	}
+}

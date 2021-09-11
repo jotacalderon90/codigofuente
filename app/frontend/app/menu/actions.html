@@ -1,0 +1,10 @@
+<div class="btn-group">
+	<button type="button" class="dropdown-toggle btn-head" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<i class="fa fa-bars"></i>
+	</button>
+	<ul class="dropdown-menu">
+		<li data-ng-repeat="row in ctrl.menu.coll_to_menu" data-ng-click="ctrl.open(row,null)">
+			<i class="fa" data-ng-class="row.icon"></i> <span>{{((row.label)?row.label:row.name)}}</span>
+		</li>
+	</ul>
+</div>

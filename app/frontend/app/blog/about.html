@@ -1,0 +1,24 @@
+<div class="modal fade" id="blog_modal_about">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Información de {{ctrl.blog.properties.label}}</h4>
+				<!--include:view/btn.close-->
+			</div>
+			<div class="modal-body text-justify" data-editable>
+				<!--editable-->
+				<p>Bienvenido al blog. En esta sección difundo contenido muy variado, por ende, aquí va una pequeña descripción.<br><br>"Clases de Informática" + "Historia de la Informática" es material que disponibilizo para mis clases particulares de informática, si quieres aprender, solo me avisas.<br><br>"Trascender" habla acerca del programa utilizado para desarrollar este sistema. Mi idea es comenzar a llenarlo de más información para quienes se interesen en tener algo similar, pero obviamente tiene que ver con mis clases de informática :).<br><br>"Letras" + "Música" son creaciones personales que me gusta compartir. Se tocar guitarra, batería y a veces cuando estoy motivado incluso canto. Los proyectos musicales en los que he participado desde la adolescencia fueron "Infragantys", "MottaRatones", "Jhonny Venganza", "Derramental" y "No Tendendia", este último aún persiste y por último "Tipo Desajustado", mi sección personal de letras y canciones.<br><br>Pueden existir más secciones, pero algunas son más privadas y dependen de los roles que tengan activados los usuarios.<br><br>Si te tinca hablar de algo por este medio, avísame. Si quieres tener tu propio blog separado de mi página web, niun problema, esa es la idea de "Trascender".</p>
+				<!--/editable-->
+			</div>
+			<div class="modal-footer-bg" data-ng-show="ctrl.blog.editHTML.canEdit"></div>
+			<div class="modal-footer" data-ng-show="ctrl.blog.editHTML.canEdit">
+				<button type="button" class="btn btn-primary" title="Editar" data-ng-show="ctrl.blog.editHTML.action!='edit'" data-ng-click="ctrl.blog.editHTML.edit()"> 
+					<i class="fa fa-pencil"></i>
+				</button>
+				<button type="button" class="btn btn-primary" title="Guardar" data-ng-show="ctrl.blog.editHTML.action=='edit'" data-ng-click="ctrl.blog.editHTML.save()"> 
+					<i class="fa fa-save"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

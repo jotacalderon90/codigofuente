@@ -1,0 +1,38 @@
+<div class="modal fade" id="poll_modal_sending">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Enviar correos</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<div class="list-group">
+					<div class="list-group-item" data-ng-repeat="row in ctrl.poll.getDoc().sending">
+                        {{row}}
+                        <button class="btn btn-xs btn-primary pull-right" data-ng-show="ctrl.poll.getSendingStatus($index)==0" data-ng-click="ctrl.poll.notify(ctrl.poll.doc._id,row,$index)">
+                            <i class="fa fa-send"></i>
+                        </button>
+                        <button class="btn btn-xs btn-info pull-right" data-ng-show="ctrl.poll.getSendingStatus($index)==1">
+                            <i class="fa fa-spinner fa-spin"></i>
+                        </button>
+                        <button class="btn btn-xs btn-success pull-right" data-ng-show="ctrl.poll.getSendingStatus($index)==2">
+                            <i class="fa fa-check"></i>
+                        </button>
+                        <button class="btn btn-xs btn-danger pull-right" data-ng-show="ctrl.poll.getSendingStatus($index)==3" data-ng-click="ctrl.poll.notify(ctrl.poll.doc._id,row,$index)">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>
+				
+			</div>
+			<div class="modal-footer-bg"></div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" title="Enviar a todos" data-ng-click="ctrl.poll.notifyAll()">
+					<i class="fa fa-send"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

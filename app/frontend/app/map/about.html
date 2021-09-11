@@ -1,0 +1,21 @@
+<div class="modal fade" id="map_modal_about">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p class="text-justify">El mundo de los mapas digitales es muy amplio y debes saber que no es controlado por google. Si bien googlemap es uno de los más completos y abiertos a la comunidad, los programadores debemos pagar para integrar alguna de sus funcionalidades, es por esto, que existen alternativas de código abierto. El proveedor que utilizo se llama LeafLet, creado el año 2011 por un ucraniano y gracias a otras entidades que comparten mapas, como la nasa, se pueden crear mapas del mundo con imágenes reales.</p>
+				<p class="text-justify">Si activas el GPS la información solo quedará en tu dispositivo.</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-default" type="button" data-toggle="modal" data-target="#map_modal_main" data-dismiss="modal">
+					<i class="fa fa-map"></i>
+				</button>
+				<button class="btn btn-default" type="button" data-toggle="modal" data-target="#map_modal_form" data-dismiss="modal" data-ng-show="ctrl.map.map!==null">
+					<i class="fa fa-gear"></i>
+				</button>
+				<button class="btn btn-default" type="button" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

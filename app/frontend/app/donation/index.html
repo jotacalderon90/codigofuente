@@ -1,0 +1,41 @@
+<!--donation-->
+<div class="block">
+	<div id="donation">
+		<div class="modal fade" id="donation_modal_main">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">{{ctrl.donation.properties.label}}</h4>
+						<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+							<i class="fa fa-close"></i>
+						</button>
+					</div>
+					<div class="modal-body text-justify">
+						<div id="donation_editable">
+							<!--editable-->
+							Holi, espero que no me cierres aun, respira, escucha el aire como entra en tu cuerpo, siente como se infla tu pecho y ahora si que si...doname unas luquitas 😊<div><br></div><div><br></div>
+							<!--/editable-->
+						</div>
+						<div class="text-center">
+							<a href='https://www.flow.cl/btn.php?token=ebl9fw2' target='_blank' id="donation_flow_editable">
+								<img src='https://www.flow.cl/img/botones/btn-donar-negro.png' alt="flow" title="flow" />
+							</a>
+						</div>
+					</div>
+					<div class="modal-footer" data-ng-show="ctrl.donation.canEdit()">
+						<button type="button" class="btn btn-primary" title="Editar" data-ng-show="ctrl.donation.action!='edit'" data-ng-click="ctrl.donation.edit()"> 
+							<i class="fa fa-pencil"></i>
+						</button>
+						<button class="btn btn-warning btn-xs" data-ng-show="ctrl.donation.action=='edit'" data-ng-click="ctrl.donation.changeDonation()">
+							<i class="fa fa-cogs"></i>
+						</button>
+						<button type="button" class="btn btn-primary" title="G" data-ng-show="ctrl.donation.action=='edit'" data-ng-click="ctrl.donation.save()"> 
+							<i class="fa fa-save"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="app/donation/donation.js"></script>	
+</div>

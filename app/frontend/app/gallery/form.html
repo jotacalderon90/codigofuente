@@ -1,0 +1,38 @@
+<div class="modal fade" id="gallery_modal_form">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" data-ng-show="ctrl.gallery.isCreateMode()">
+					Galería <small>Nuevo</small>
+				</h4>
+				<h4 class="modal-title" data-ng-show="ctrl.gallery.isReadMode() || ctrl.gallery.isEditMode()">
+					{{ctrl.gallery.doc.title}}
+				</h4>
+				<button type="button" class="right btn-head" title="cerrar" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<div class="form-group">
+					<label>Título</label>
+					<input type="text" class="form-control" placeholder="Título" data-ng-model="ctrl.gallery.getDoc().title" data-ng-disabled="ctrl.gallery.isReadMode()">
+				</div>
+			</div>
+			<div class="modal-footer-bg" data-ng-show="ctrl.gallery.showFooter()"></div>
+			<div class="modal-footer" data-ng-show="ctrl.gallery.showFooter()">
+				<button type="button" class="btn btn-primary" title="Crear" data-ng-click="ctrl.gallery.create()" data-ng-show="ctrl.gallery.isCreateMode()">
+					<i class="fa fa-check"></i>
+				</button>
+				<button type="button" class="btn btn-success" title="Actualizar" data-ng-click="ctrl.gallery.update()" data-ng-show="ctrl.gallery.isEditMode()">
+					<i class="fa fa-check"></i>
+				</button>
+				<button type="button" class="btn btn-danger" title="Eliminar" data-ng-click="ctrl.gallery.delete()" data-ng-show="ctrl.gallery.isEditMode()">
+					<i class="fa fa-trash"></i>
+				</button>
+				<button type="button" class="btn btn-default" data-ng-click="ctrl.gallery.edit()" data-ng-show="ctrl.gallery.isReadMode()" title="Editar">
+					<i class="fa fa-pencil"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

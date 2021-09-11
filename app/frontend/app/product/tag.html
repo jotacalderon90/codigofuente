@@ -1,0 +1,75 @@
+<div class="modal fade" id="product_modal_tag">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="btn-group menu-inside btn-head left">
+					<button type="button" class="dropdown-toggle btn-head" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-bars"></i>
+					</button>
+					<ul class="dropdown-menu">
+						<li data-dismiss="modal" data-ng-click="ctrl.product.search()">
+							<i class="fa fa-search"></i>
+						</li>
+						<li data-dismiss="modal" data-ng-click="ctrl.product.gotoConceptual()" data-ng-show="ctrl.product.setting.active">
+							<i class="fa fa-sitemap"></i>
+						</li>
+						<li data-dismiss="modal" data-ng-click="ctrl.pushStory('#product_modal_tag')" data-toggle="modal" data-target="#product_modal_about">
+							<i class="fa fa-info-circle"></i>
+						</li>
+					</ul>
+				</div>
+				<h4 class="modal-title">{{ctrl.product.title}}</h4>
+				<!--include:view/btn.close-->
+			</div>
+			<div class="modal-body text-justify">
+				<div class="row">
+					<div class="col-md-4" data-ng-show="ctrl.product.canCreate()">
+						<div class="jumbotron">
+							<button class="btn btn-default btn-block" data-ng-click="ctrl.pushStory('#product_modal_tag');ctrl.product.new()" data-dismiss="modal" data-toggle="modal" data-target="#product_modal_form">
+								<i class="fa fa-plus"></i>
+							</button>
+						</div>
+					</div>
+					<div class="col-md-4" data-ng-show="ctrl.product.canSetting()">
+						<div class="jumbotron">
+							<button class="btn btn-default btn-block" data-ng-click="ctrl.pushStory('#product_modal_tag');" data-dismiss="modal" data-toggle="modal" data-target="#product_modal_setting">
+								<i class="fa fa-cogs"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+				<p>Categorías
+					<span class="pull-right" data-ng-click="ctrl.product.tagClose()" data-ng-show="ctrl.product.tagbk.length>1">
+						<i class="fa fa-close" ></i>
+					</span>
+				</p>
+				<div class="row">
+					<div class="col-md-4" data-ng-repeat="row in ctrl.product.tag">
+						<div class="jumbotron">
+							<button class="btn btn-default btn-block" data-ng-click="ctrl.product.tagAsFolder(row.tag,row.label)">
+								<span>{{row.label}}</span>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div data-ng-show="ctrl.product.coll.length>0">				
+					<p>Registros</p>
+					<div class="row">
+						<div class="col-md-4" data-ng-repeat="row in ctrl.product.coll">
+							<div class="jumbotron">
+								<button class="btn btn-default btn-block" data-ng-click="ctrl.pushStory('#product_modal_tag');ctrl.product.read(row._id)" data-dismiss="modal" data-toggle="modal" data-target="#product_modal_document">
+									<span>{{row.title}}</span>
+								</button>
+							</div>
+						</div>
+					</div>
+					<a class="pull-right" data-ng-click="ctrl.product.getCollection()" data-ng-show="ctrl.product.obtained<ctrl.product.cant">
+						cargar más...
+						<br>
+						<span>{{ctrl.product.obtained}}/{{ctrl.product.cant}}</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

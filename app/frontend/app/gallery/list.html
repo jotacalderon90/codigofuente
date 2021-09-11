@@ -1,0 +1,33 @@
+<div class="modal fade" id="gallery_modal_list">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="left btn-head" data-dismiss="modal" data-toggle="modal" data-target="#gallery_modal_form" data-ng-click="ctrl.pushStory('#gallery_modal_list');ctrl.gallery.edit()" data-ng-show="ctrl.gallery.canEdit()">
+					<i class="fa fa-pencil"></i>
+				</button>
+				<h4 class="modal-title">{{ctrl.gallery.title}}</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<div class="row">
+					<div class="col-md-6" data-ng-show="ctrl.gallery.canCreate()">
+						<form id="gallery_file_upload" method="post" action="" encType="multipart/form-data">
+							<input type="file" name="file" multiple/>
+							<button type="submit" class="btn btn-primary">Subir</button>
+						</form>
+					</div>
+					<div class="col-md-6" data-ng-repeat="row in ctrl.gallery.doc.coll">
+						<img src="/assets/media/img/logo.png" data-ng-src="{{row}}" data-ng-click="ctrl.gallery.openCarousel($index)" alt="imagen de publicación" title="imagen de publicación"/>
+						<button class="btn btn-xs btn-danger" data-ng-show="ctrl.gallery.canEdit()" data-ng-click="ctrl.gallery.delete_file($index)">
+							<i class="fa fa-trash"></i>
+						</button>
+						<br>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

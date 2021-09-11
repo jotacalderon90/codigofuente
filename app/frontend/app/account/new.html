@@ -1,0 +1,38 @@
+<div class="modal fade" id="account_modal_new">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Crear Cuenta</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<form action="/account" method="POST">
+					<input class="form-control" placeholder="Email" name="email" type="text" />
+					<br>
+					<input class="form-control" placeholder="Password" name="password" type="password" value=""/>
+					<br>
+					
+					<!--if:doc.config.recaptcha && doc.config.recaptcha.enabled-->
+					<div class="form-group">
+						<div class="g-recaptcha" data-sitekey="{{data:doc.config.recaptcha.public}}"></div>
+					</div>
+					<!--/if-->
+					
+					<button type="submit" class="btn btn-lg btn-primary btn-block" >Crear Cuenta</button>
+					
+					<a href="/" data-ng-href="{{ctrl.account.googleauth}}" class="btn btn-lg btn-primary btn-block" data-ng-show="ctrl.account.googleauth!=''">
+						<img src="https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-512.png" height="20" alt="login con google" title="login con google"/>
+						Ingresar con Google
+					</a>
+					
+					<hr>
+					<div class="text-right">
+						<a data-toggle="modal" data-target="#account_modal_login" data-dismiss="modal">Ingresar con tu cuenta</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

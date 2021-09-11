@@ -1,0 +1,28 @@
+<div class="modal fade" id="socket_modal_form">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Socket</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<p>Socket es un protocolo de internet al igual que http y https, una característica que lo hace diferente, es que permite mantener una conexión en tiempo real entre el servidor y todos los dispositivos que estan conectados.</p>
+				<p data-ng-show="ctrl.socket.connected=='0'">Actívalo para habilitar los módulos que utilizan socket.</p>
+				
+				<button class="btn btn-block btn-primary" data-ng-show="ctrl.socket.connected=='0'" data-ng-click="ctrl.socket.connect()">Conectar</button>
+				<button class="btn btn-block btn-warning" data-ng-show="ctrl.socket.connected=='1'" data-ng-click="ctrl.socket.disconnect()">Desconectar</button>
+				<hr data-ng-show="ctrl.socket.connected=='1'">
+				<div data-ng-show="ctrl.socket.connected=='1'">
+					<p>Los módulos que utilizan socket son:</p>
+					<ul>
+						<li><a data-dismiss="modal" data-ng-click="ctrl.push.open()">Push</a></li>
+						<li><a data-dismiss="modal" data-ng-click="ctrl.contact.open()">Contactos</a></li>
+						<li><a data-dismiss="modal" data-ng-click="ctrl.chat.open()">Chat</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

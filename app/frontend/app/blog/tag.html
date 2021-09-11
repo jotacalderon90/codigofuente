@@ -1,0 +1,76 @@
+<div class="modal fade" id="blog_modal_tag">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="btn-group menu-inside btn-head left">
+					<button type="button" class="dropdown-toggle btn-head" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-bars"></i>
+					</button>
+					<ul class="dropdown-menu">
+						<li data-dismiss="modal" data-ng-click="ctrl.blog.search()">
+							<i class="fa fa-search"></i>
+						</li>
+						<li data-dismiss="modal" data-ng-click="ctrl.blog.gotoConceptual()" data-ng-show="ctrl.blog.setting.active">
+							<i class="fa fa-sitemap"></i>
+						</li>
+						<li data-dismiss="modal" data-ng-click="ctrl.pushStory('#blog_modal_tag')" data-toggle="modal" data-target="#blog_modal_about">
+							<i class="fa fa-info-circle"></i>
+						</li>
+					</ul>
+				</div>
+				<h4 class="modal-title">{{ctrl.blog.title}}</h4>
+				<!--include:view/btn.close-->
+			</div>
+			<div class="modal-body text-justify">
+				<div class="row">
+					<div class="col-md-4" data-ng-show="ctrl.blog.canCreate()">
+						<div class="jumbotron">
+							<button class="btn btn-default btn-block" data-ng-click="ctrl.pushStory('#blog_modal_tag');ctrl.blog.new()" data-dismiss="modal" data-toggle="modal" data-target="#blog_modal_form">
+								<i class="fa fa-plus"></i>
+							</button>
+						</div>
+					</div>
+					<div class="col-md-4" data-ng-show="ctrl.blog.canSetting()">
+						<div class="jumbotron">
+							<button class="btn btn-default btn-block" data-ng-click="ctrl.pushStory('#blog_modal_tag');" data-dismiss="modal" data-toggle="modal" data-target="#blog_modal_setting">
+								<i class="fa fa-cogs"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+				<p>Categorías
+					<span class="pull-right" data-ng-click="ctrl.blog.tagClose()" data-ng-show="ctrl.blog.tagbk.length>1">
+						<i class="fa fa-close" ></i>
+					</span>
+				</p>
+				<div class="row">
+					<div class="col-md-4" data-ng-repeat="row in ctrl.blog.tag">
+						<div class="jumbotron">
+							<!--<button class="btn btn-default btn-block" data-ng-click="ctrl.pushStory('#blog_modal_tag');ctrl.blog.getByTag(tag)" data-dismiss="modal" data-toggle="modal" data-target="#blog_modal_list">-->
+							<button class="btn btn-default btn-block" data-ng-click="ctrl.blog.tagAsFolder(row.tag,row.label)">
+								<span>{{row.label}}</span>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div data-ng-show="ctrl.blog.coll.length>0">				
+					<p>Registros</p>
+					<div class="row">
+						<div class="col-md-4" data-ng-repeat="row in ctrl.blog.coll">
+							<div class="jumbotron">
+								<button class="btn btn-default btn-block" data-ng-click="ctrl.pushStory('#blog_modal_tag');ctrl.blog.read(row._id)" data-dismiss="modal" data-toggle="modal" data-target="#blog_modal_document">
+									<span>{{row.title}}</span>
+								</button>
+							</div>
+						</div>
+					</div>
+					<a class="pull-right" data-ng-click="ctrl.blog.getCollection()" data-ng-show="ctrl.blog.obtained<ctrl.blog.cant">
+						cargar más...
+						<br>
+						<span>{{ctrl.blog.obtained}}/{{ctrl.blog.cant}}</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

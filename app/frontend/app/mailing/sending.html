@@ -1,0 +1,42 @@
+<div class="modal fade" id="mailing_modal_sending">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Enviar correos</h4>
+				<button type="button" class="right btn-head" data-ng-click="ctrl.mailing.marcar_todos()">
+					<input type="checkbox"  data-ng-model="ctrl.mailing.marcar_todo"/>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<div class="list-group">
+					<div class="list-group-item" data-ng-repeat="row in ctrl.mailing.coll">
+						<div data-ng-show="!ctrl.mailing.enviando">
+							<span>{{row.email}}</span>
+							<input type="checkbox" class="pull-right" data-ng-model="row.activate"/>
+						</div>
+						<div data-ng-show="ctrl.mailing.enviando">
+							<div class="btn btn-xs btn-info" data-ng-show="ctrl.mailing.getSendingStatus($index)==1">
+								<i class="fa fa-spinner fa-spin"></i>
+							</div>
+							<div class="btn btn-xs btn-success" data-ng-show="ctrl.mailing.getSendingStatus($index)==2">
+								{{row.email}} <i class="fa fa-check"></i>
+							</div>
+							<button class="btn btn-xs btn-danger" data-ng-show="ctrl.mailing.getSendingStatus($index)==3" data-ng-click="ctrl.mailing.info_error($index)">
+								{{row.email}} <i class="fa fa-info-circle"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer-bg"></div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" title="Enviar" data-ng-click="ctrl.mailing.enviar()" data-ng-show="!ctrl.mailing.enviando">
+					<i class="fa fa-check"></i>
+				</button>
+				<button type="button" class="btn" data-ng-click="ctrl.mailing.volver()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

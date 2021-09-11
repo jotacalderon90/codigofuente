@@ -1,0 +1,76 @@
+<div class="modal fade" id="blog_modal_document">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="left btn-head" title="Editar" data-ng-show="ctrl.blog.canEdit()" data-ng-click="ctrl.pushStory('#blog_modal_document');ctrl.blog.edit()" data-dismiss="modal" data-toggle="modal" data-target="#blog_modal_form">
+					<i class="fa fa-pencil"></i>
+				</button>
+				<h4 class="modal-title">
+					{{ctrl.blog.doc.title}}
+				</h4>
+				<!--include:view/btn.close-->
+			</div>
+			<div class="modal-body text-justify">
+				<img src="/assets/media/img/logo.png" data-ng-src="{{ctrl.blog.doc.img}}" class="img_main" alt="imagen de publicación" title="imagen de publicación"/>
+				<br>
+				<p>{{ctrl.blog.doc.resume}}</p>
+				<div id="blog_document_content"></div>
+				<br>
+				<br>
+				<small title="{{ctrl.blog.doc.datetitle}}">Escrito por {{ctrl.blog.doc.author.nickname}} <span>{{ctrl.blog.doc.datefromnow}}</span></small>
+				
+				<br>
+				<br>
+				
+				<!--ACTIONS-->
+				<div id="dvBlogRSS" class="text-center">
+					<button type="button" class="btn btn-default" title="Copy" data-ng-click="ctrl.blog.copyURL('/blog/' + ctrl.blog.doc.uri)">
+						<i class="fa fa-copy"></i>
+					</button>
+					<a href="/" data-ng-href="https://www.facebook.com/sharer/sharer.php?u={{ctrl.blog.getURI('/blog/' + ctrl.blog.doc.uri)}}" class="btn btn-default" target="_blank" title="Facebook" >
+						<i class="fa fa-facebook"></i>
+					</a>
+					<a href="/" data-ng-href="https://twitter.com/intent/tweet?text={{ctrl.blog.doc.description}}&url={{ctrl.blog.getURI('/blog/' + ctrl.blog.doc.uri)}}&hashtags={{ctrl.blog.doc.hashtag}}" class="btn btn-default" target="_blank" title="Twitter" >
+						<i class="fa fa-twitter"></i>
+					</a>
+					<a href="/" data-ng-href="https://api.whatsapp.com/send?text={{ctrl.blog.doc.description}} {{ctrl.blog.getURI('/blog/' + ctrl.blog.doc.uri)}}" class="btn btn-default" target="_blank" title="Whatsapp" >
+						<i class="fa fa-whatsapp"></i>
+					</a>
+					<a href="/" data-ng-href="https://www.linkedin.com/sharing/share-offsite/?url={{ctrl.blog.getURI('/blog/' + ctrl.blog.doc.uri)}}" class="btn btn-default" target="_blank" title="Linkedin" >
+						<i class="fa fa-linkedin"></i>
+					</a>
+				</div>
+				<br>
+				<br>
+				
+				<!--RELATIONS-->
+				<div class="row">
+					<div class="col-md-6" data-ng-repeat="relation in ctrl.blog.doc.relation">
+						<article>
+							<img src="/assets/media/img/logo.png" data-ng-src="{{relation.thumb}}" data-ng-click="ctrl.blog.read(relation._id)" alt="imagen de publicación" title="imagen de publicación"/>
+							<div class="info">
+								<h2>{{relation.title}}</h2>
+								<small title="{{relation.datetitle}}">{{relation.datefromnow}}</small>
+							</div>
+						</article>
+					</div>
+				</div>
+				
+				<!--TAGS-->
+				<p data-ng-repeat="tag in ctrl.blog.doc.tag" class="bg-primary text-center" data-dismiss="modal" data-toggle="modal" data-target="#blog_modal_list" data-ng-click="ctrl.pushStory('#blog_modal_document');ctrl.blog.getByTag(tag,1)">{{tag}}</p>
+				
+				<!--COMMENT-->
+				<button class="btn btn-block btn-warning" data-dismiss="modal" data-ng-click="ctrl.pushStory('#blog_modal_document');ctrl.comment.load(ctrl.blog.doc._id)" data-ng-show="ctrl.blog.canComment()">
+					Comentarios
+				</button>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+

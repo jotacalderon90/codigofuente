@@ -1,0 +1,23 @@
+#game #game_cv{
+	width: 100%;
+	max-width: 100%;
+}
+#game table{
+	margin-left:auto;
+	margin-right:auto;
+}
+#game .modal-footer button{ 
+	padding: 0px;
+	border: 0px;
+}
+#game .modal-footer img{
+	width:auto;
+	height:auto;
+	border:4px;
+	max-height: 40px;
+}
+@media (max-width: 990px) {	
+	#game .col-md-4{
+		width: 100%;
+	}
+}

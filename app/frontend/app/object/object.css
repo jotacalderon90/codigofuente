@@ -1,0 +1,40 @@
+
+/*******************/
+/*object_modal_form*/
+/*******************/
+
+#object_modal_form .dropdown-menu{
+	min-width: 200px;
+}
+@media (max-width: 768px) {
+	#object #object_modal_form .modal-content{
+		overflow: hidden;
+	}
+	#object #object_modal_form .modal-body{
+		padding: 0px;
+	}
+}
+
+/*******************/
+/*object_modal_list*/
+/*******************/
+
+#object_modal_list .btn-default{
+	color: #444;
+}
+#object_modal_list .btn-default:hover{
+	color: black;
+}
+
+@media (max-width: 990px) {	
+	#object_modal_list .col-md-4{
+		width: 50%;
+		float: left;
+	}
+	#object_modal_list .btn-default .fa{
+		font-size: 14px;
+	}
+	#object_modal_list .btn-default span{
+		font-size: 12px;
+	}
+}

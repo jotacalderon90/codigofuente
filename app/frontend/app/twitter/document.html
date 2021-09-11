@@ -1,0 +1,87 @@
+<div class="modal fade" id="twitter_modal_document">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="left btn-head" title="Editar" data-ng-show="ctrl.twitter.canEdit()" data-ng-click="ctrl.pushStory('#twitter_modal_document');ctrl.twitter.edit()" data-dismiss="modal" data-toggle="modal" data-target="#twitter_modal_form">
+					<i class="fa fa-pencil"></i>
+				</button>
+				<h4 class="modal-title">
+					{{ctrl.twitter.doc.title}}
+				</h4>
+				<!--include:view/btn.close-->
+			</div>
+			<div class="modal-body text-justify">
+				<!--Tweets-->
+				<div data-ng-repeat="row in ctrl.twitter.doc.tweets">
+					<img src="/assets/media/img/logo.png" data-ng-show="row.images.length > 0" class="media" data-ng-src="{{row.images[row.image]}}" data-ng-click="ctrl.twitter.changeImage(row)" alt="imagen de publicación" title="imagen de publicación"/>
+					<div data-ng-class="(row.images.length > 0)?'content':'content-full'">
+						<small title="{{row.datetitle}}" class="text-left">{{row.datefromnow}}</small>
+						<div data-html="{{row.content}}"></div>
+					</div>
+					<div style="clear:both;"></div>
+				</div>
+				<!--
+				<img data-ng-src="{{ctrl.twitter.doc.img}}" class="img_main"/>
+				<br>
+				<p>{{ctrl.twitter.doc.resume}}</p>
+				<div id="twitter_document_content"></div>
+				<br>
+				<br>
+				<small title="{{ctrl.twitter.doc.datetitle}}">Escrito por {{ctrl.twitter.doc.author.nickname}} <span>{{ctrl.twitter.doc.datefromnow}}</span></small>
+				
+				<br>
+				<br>
+				-->
+				
+				<!--ACTIONS-->
+				<div id="dvTwitterRSS" class="text-center">
+					<button type="button" class="btn btn-default" title="Copy" data-ng-click="ctrl.twitter.copyURL('/twitter/' + ctrl.twitter.doc.uri)">
+						<i class="fa fa-copy"></i>
+					</button>
+					<a href="/" data-ng-href="https://www.facebook.com/sharer/sharer.php?u={{ctrl.twitter.getURI('/twitter/' + ctrl.twitter.doc.uri)}}" class="btn btn-default" target="_blank" title="Facebook" >
+						<i class="fa fa-facebook"></i>
+					</a>
+					<a href="/" data-ng-href="https://twitter.com/intent/tweet?text={{ctrl.twitter.doc.description}}&url={{ctrl.twitter.getURI('/twitter/' + ctrl.twitter.doc.uri)}}&hashtags={{ctrl.twitter.doc.hashtag}}" class="btn btn-default" target="_blank" title="Twitter" >
+						<i class="fa fa-twitter"></i>
+					</a>
+					<a href="/" data-ng-href="https://api.whatsapp.com/send?text={{ctrl.twitter.doc.description}} {{ctrl.twitter.getURI('/twitter/' + ctrl.twitter.doc.uri)}}" class="btn btn-default" target="_blank" title="Whatsapp" >
+						<i class="fa fa-whatsapp"></i>
+					</a>
+					<a href="/" data-ng-href="https://www.linkedin.com/sharing/share-offsite/?url={{ctrl.twitter.getURI('/twitter/' + ctrl.twitter.doc.uri)}}" class="btn btn-default" target="_blank" title="Linkedin" >
+						<i class="fa fa-linkedin"></i>
+					</a>
+				</div>
+				<br>
+				<br>
+				
+				<!--RELATIONS-->
+				<div class="row">
+					<div class="col-md-6" data-ng-repeat="relation in ctrl.twitter.doc.relation">
+						<article>
+							<img src="/assets/media/img/logo.png" data-ng-src="{{relation.thumb}}" data-ng-click="ctrl.twitter.read(relation._id)" alt="imagen de publicación" title="imagen de publicación"/>
+							<div class="info">
+								<h2>{{relation.title}}</h2>
+								<small title="{{relation.datetitle}}">{{relation.datefromnow}}</small>
+							</div>
+						</article>
+					</div>
+				</div>
+				
+				<!--TAGS-->
+				<p data-ng-repeat="tag in ctrl.twitter.doc.tag" class="bg-primary text-center" data-dismiss="modal" data-toggle="modal" data-target="#twitter_modal_list" data-ng-click="ctrl.pushtwitter('#twitter_modal_document');ctrl.twitter.getByTag(tag,1)">{{tag}}</p>
+				
+				<!--COMMENT-->
+				<button class="btn btn-block btn-warning" data-dismiss="modal" data-ng-click="ctrl.pushtwitter('#twitter_modal_document');ctrl.comment.load(ctrl.twitter.doc._id)" data-ng-show="ctrl.twitter.canComment()">
+					Comentarios
+				</button>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+

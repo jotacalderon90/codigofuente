@@ -1,0 +1,52 @@
+#map #map_modal_main .modal-content{
+	height: 100%;
+}
+#map #map_modal_main .modal-header{
+	position: relative;
+	z-index: 2;
+	background: none;
+	color:white;
+}
+#map #map_modal_main .btn-head{
+	background: inherit;
+	color:white;
+}
+#map #map_modal_main .dropdown-menu{
+	background: none;
+	color:white;
+}
+#map #map_modal_main .modal-body{
+	padding: 0px;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	width: 100%;
+	height: 100%;/*
+	//height: calc(100% - 110px);
+	overflow: auto;*/
+}
+#map #map_modal_main .modal-footer{
+	z-index: 2;
+	background: none;
+	color:white;
+}
+#map #map_modal_main #default_map_div{
+	width: 100%;
+	height: 100%;
+	/*z-index: 0;
+	opacity: 0.9;*/
+}
+#map .map_thumb{
+	max-width: 31%;
+	margin: 1%;
+	float: left;
+	padding: 0;
+}
+@media (max-width: 768px) {
+	#map .map_thumb{
+		max-width: 80%;
+		float: none;
+		margin: auto;
+		margin-bottom: 25px;
+	}
+}

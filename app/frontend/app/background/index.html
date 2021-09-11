@@ -1,0 +1,43 @@
+<!--background-->
+<div class="block">
+	<div id="background">
+		<div class="modal fade" id="background_modal_form" tabindex="-1" role="dialog" >
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Background</h4>
+						<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+							<i class="fa fa-close"></i>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p class="text-justify">Background es un módulo local, solo interactúa en tu dispositivo. Puedes ingresar una imágen directamente desde la cámara o desde la galería, cargar una imágen del dispositivo o simplemente copiar y pegar el vínculo de una web.</p>
+						<img src="/assets/media/img/logo.png" data-ng-src="{{ctrl.background.url}}" height="100"  alt="imagen de publicación" title="imagen de publicación"/>
+						<input type="file" style="display:none" id="background_file_device"/>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-default" type="button" data-ng-click="ctrl.background.camera()" title="abrir cámara" data-dismiss="modal">
+							<i class="fa fa-camera"></i>
+						</button>
+						<button class="btn btn-default" type="button" data-ng-click="ctrl.background.device()" title="subir imágen del dispositivo">
+							<i class="fa fa-image"></i>
+						</button>
+						<button class="btn btn-default" type="button" data-ng-click="ctrl.background.copyLink()" title="copiar vínculo de imágen">
+							<i class="fa fa-link"></i>
+						</button>
+						<!--<button class="btn btn-default" type="button" data-ng-click="ctrl.background.download()" title="descargar imágen">
+							<i class="fa fa-download"></i>
+						</button>-->
+						<button class="btn btn-default" type="button" data-ng-click="ctrl.background.upload()" title="subir imágen" data-ng-show="ctrl.background.canEdit()">
+							<i class="fa fa-upload"></i>
+						</button>
+						<button class="btn btn-default" type="button" data-ng-click="ctrl.background.setDefault(true)" title="restaurar valores">
+							<i class="fa fa-eraser"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="app/background/background.js"></script>	
+</div>

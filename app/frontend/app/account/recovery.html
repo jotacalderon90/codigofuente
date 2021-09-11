@@ -1,0 +1,37 @@
+<div class="modal fade" id="account_modal_recovery">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Reestablecer contraseña</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<form action="/account/recovery" method="POST" onsubmit="return account_recovery()">
+					<input class="form-control" placeholder="Nueva password" name="password" type="password" value="" />
+					<br>
+					<input class="form-control" placeholder="Repita password" name="password2" type="password" value="" />
+					<br>
+					<input name="hash" type="hidden" value="{{data:doc.hash}}" />
+					
+					<!--if:doc.config.recaptcha && doc.config.recaptcha.enabled-->
+					<div class="g-recaptcha" data-sitekey="{{data:doc.config.recaptcha.public}}"></div>
+					<br>
+					<!--/if-->
+					
+					<button type="submit" class="btn btn-lg btn-success btn-block" >Reestablecer</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	function account_recovery(){
+		if(document.forms[0].password.value!=document.forms[0].password2.value){
+			alert("Contraseñas no coindiden");
+			return false;
+		}
+		return true;
+	}
+</script>

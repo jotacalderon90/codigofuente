@@ -1,0 +1,102 @@
+<div class="modal fade" id="poll_modal_form">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">  
+					<small data-ng-show="ctrl.poll.isCreateMode()">Nueva</small>
+					<small data-ng-show="ctrl.poll.isReadMode() || ctrl.poll.isEditMode()">{{ctrl.poll.getDoc()._id}}</small>
+				</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<div class="form-group">
+					<label>Título</label>
+					<input type="text" class="form-control" placeholder="Título" data-ng-model="ctrl.poll.getDoc().title" data-ng-disabled="ctrl.poll.isReadMode()">
+				</div>
+				<div class="form-group">
+					<label>Resultados privados</label>
+                    <br/>
+					<input type="checkbox" data-ng-model="ctrl.poll.getDoc().private" data-ng-disabled="ctrl.poll.isReadMode()">
+				</div>
+				<div class="form-group">
+					<label>Permitir respuestas anonimas</label>
+                    <br/>
+					<input type="checkbox" data-ng-model="ctrl.poll.getDoc().anon" data-ng-disabled="ctrl.poll.isReadMode()">
+				</div>
+				<div class="form-group">
+					<label>Contenido del email</label>
+					<input type="text" class="form-control" id="poll_input_content" placeholder="Contenido" data-ng-disabled="ctrl.poll.isReadMode()">
+				</div>
+                <div class="form-group">
+                    <label>Cuentas a notificar</label>
+					<div class="input-group-btn">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ng-disabled="ctrl.poll.isReadMode()">
+							Cargar 
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li><a data-ng-click="ctrl.poll.selectRoles('*')">todos</a></li>
+							<li><a data-ng-repeat="rol in ctrl.poll.users_tag" data-ng-click="ctrl.poll.selectRoles(rol)">{{rol}}</a></li>
+						</ul>
+					</div>
+                    <textarea class="form-control" placeholder="Lista de Correos separadas por línea" data-ng-model="ctrl.poll.getDoc().accounts" data-ng-disabled="ctrl.poll.isReadMode()"></textarea>
+                </div>
+                <div class="form-group">
+                    <table class="table">
+                        <tr>
+                            <th colspan="2">Lista de Opciones</th>
+                        </tr>
+                        <tr data-ng-repeat="option in ctrl.poll.getDoc().options">
+                            <td>
+                                <input type="text" class="form-control" data-ng-model="option.text" placeholder="Opcion $index" data-ng-disabled="ctrl.poll.isReadMode()"/>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" data-ng-click="ctrl.poll.getDoc().options.splice($index,1)" data-ng-disabled="ctrl.poll.isReadMode()">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                    <button class="btn btn-primary" data-ng-click="ctrl.poll.getDoc().options.push({text:'Nueva opcion'})" data-ng-disabled="ctrl.poll.isReadMode()">Agregar opcion</button>
+                </div>
+                <div class="form-group">
+                    <label>Estado</label>
+                    <select class="form-control" data-ng-model="ctrl.poll.getDoc().status" data-ng-disabled="ctrl.poll.isReadMode()">
+                        <option value="Inicial">Inicial</option>
+                        <option value="Enviada">Enviada</option>
+                        <option value="Finalizada">Finalizada</option>
+                    </select>
+                </div>
+			</div>
+			<div class="modal-footer-bg"></div>
+            <div class="modal-footer">
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-primary" data-ng-click="ctrl.poll.create()" data-ng-show="ctrl.poll.isCreateMode()" title="ctrl.poll.createLog.msg">
+						<i class="fa fa-check" data-ng-show="!ctrl.poll.createLog.spinner"></i>
+						<i class="fa fa-spinner fa-spin" data-ng-show="ctrl.poll.createLog.spinner"></i>
+					</button>
+					<button type="button" class="btn btn-danger" data-ng-click="ctrl.poll.delete()" data-ng-show="ctrl.poll.isEditMode()" title="ctrl.poll.deleteLog.msg">
+						<i class="fa fa-trash" data-ng-show="!ctrl.poll.deleteLog.spinner"></i>
+						<i class="fa fa-spinner fa-spin" data-ng-show="ctrl.poll.deleteLog.spinner"></i>
+					</button>
+					<button type="button" class="btn btn-primary" data-ng-click="ctrl.poll.edit()" data-ng-show="ctrl.poll.isReadMode()">
+						<i class="fa fa-pencil"></i>
+					</button>
+					<button type="button" class="btn btn-success" data-ng-click="ctrl.poll.update()" data-ng-show="ctrl.poll.isEditMode()" title="ctrl.poll.updateLog.msg">
+						<i class="fa fa-check" data-ng-show="!ctrl.poll.updateLog.spinner"></i>
+						<i class="fa fa-spinner fa-spin" data-ng-show="ctrl.poll.updateLog.spinner"></i>
+					</button>
+					<a class="btn btn-warning" title="Ver resultados" data-ng-click="ctrl.pushStory('#poll_modal_form');ctrl.poll.result()" data-ng-show="ctrl.poll.getDoc().status=='Enviada' || ctrl.poll.getDoc().status=='Finalizada' ">
+						<i class="fa fa-database"></i>
+					</a>
+					<button class="btn btn-info" data-ng-click="ctrl.pushStory('#poll_modal_form')" data-dismiss="modal" data-toggle="modal" data-target="#poll_modal_sending">
+						<span class="fa fa-send"></span>
+					</button>
+				</div>
+            </div>
+		</div>
+	</div>
+</div>
+

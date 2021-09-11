@@ -1,0 +1,14 @@
+@media (max-width: 768px) {
+	#collection #collection_modal_document .modal-content{
+		overflow: hidden;
+	}
+	#collection #collection_modal_document .modal-body{
+		padding: 0px;
+	}
+	#collection #collection_modal_list .modal-body{
+		padding: 0px;
+	}
+	#collection #collection_modal_list .list-group-item{
+		margin-bottom: 0px;
+	}
+}

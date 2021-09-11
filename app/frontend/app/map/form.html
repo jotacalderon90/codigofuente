@@ -1,0 +1,62 @@
+<div class="modal fade" id="map_modal_form">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body text-justify">
+				
+				<!--GPS-->
+				<a class="btn btn-primary btn-block" role="button" data-toggle="collapse" href="#map_form_gps" aria-expanded="false" aria-controls="map_form_gps">GPS</a>
+				<div class="collapse" id="map_form_gps">
+					<div class="well">
+								
+						<button class="btn btn-primary" type="button" data-ng-click="ctrl.map.geolocation()" data-ng-show="ctrl.map.map!==null" title="GPS">
+							<i class="fa fa-map-marker"></i>
+						</button>
+						<br>
+						<br>
+						<div class="collapse" id="map_geolocation_collapse">
+							<pre><code></code></pre>
+						</div>
+						
+					</div>
+				</div>
+				
+				<!--MAPAS-->
+				<a class="btn btn-primary btn-block" role="button" data-toggle="collapse" href="#map_form_mapas" aria-expanded="false" aria-controls="map_form_mapas">Mapas</a>
+				<div class="collapse" id="map_form_mapas">
+					<div class="well">
+						<div class="text-center astable">
+							<button data-ng-repeat="row in ctrl.map.layers" class="map_thumb" data-ng-click="ctrl.map.changeMap($index)" >
+								<img src="/assets/media/img/logo.png" data-ng-src="{{row.thumb}}" alt="imagen de publicación" title="imagen de publicación"/>
+							</button>
+						</div>
+					</div>
+				</div>
+				
+				<!--TOPOJSON-->
+				<a class="btn btn-primary btn-block" role="button" data-toggle="collapse" href="#map_form_topojson" aria-expanded="false" aria-controls="map_form_topojson">Topojson</a>
+				<div class="collapse" id="map_form_topojson">
+					<div class="well">
+						<button class="btn btn-block btn-primary" data-ng-click="ctrl.map.loadTopojson()" data-ng-show="ctrl.map.topojson_coll.length == 0">cargar lista de topojson</button>
+				
+						<select class="form-control" data-ng-show="ctrl.map.topojson_coll.length > 0" data-ng-model="ctrl.map.topo_json_coll_selected" data-ng-change="ctrl.map.loadTopojsonDATA(ctrl.map.topo_json_coll_selected)">
+							<option></option>
+							<option data-ng-repeat="t in ctrl.map.topojson_coll" value="{{t._id}}">{{t.name}}</option>
+						</select>
+					</div>
+				</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-default" type="button" data-toggle="modal" data-target="#map_modal_main" data-dismiss="modal">
+					<i class="fa fa-map"></i>
+				</button>
+				<button class="btn btn-default" type="button" data-toggle="modal" data-target="#map_modal_about" data-dismiss="modal">
+					<i class="fa fa-question-circle"></i>
+				</button>
+				<button class="btn btn-default" type="button" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

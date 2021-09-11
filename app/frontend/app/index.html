@@ -1,0 +1,48 @@
+<!--use:view/main-->
+
+<!--define:main-->
+	
+	<!--include:promise/index-->
+	<!--include:comment/index-->
+	<!--include:about/index-->
+	<!--include:blog/index-->
+	<!--include:product/index-->
+	<!--include:ecommerce/index-->
+	<!--include:address/index-->
+	<!--include:message/index-->
+	<!--include:gallery/index-->
+	<!--include:story/index-->
+	<!--include:map/index-->
+	<!--include:conceptual/index-->
+	<!--include:background/index-->
+	<!--include:matrix/index-->
+	<!--include:twitter/index-->
+	<!--include:poll/index-->
+	<!--include:push/index-->
+	<!--include:landing/index-->
+	
+	<!--if:doc.user && (doc.user.roles.indexOf('root')>-1 || doc.user.roles.indexOf('admin')>-1 || doc.user.roles.indexOf('usermasadelante')>-1)-->
+		<!--include:socket/index-->
+		<!--include:contact/index-->
+		<!--include:chat/index-->
+		<!--include:game/index-->
+	<!--/if-->
+	
+	<!--if:doc.user && (doc.user.roles.indexOf('root')>-1 || doc.user.roles.indexOf('admin')>-1)-->
+		<!--include:users/index-->
+		<!--include:mailing/index-->
+	<!--/if-->
+
+	<!--if:doc.user && (doc.user.roles.indexOf('root')>-1)-->
+		<!--include:directory/index-->
+		<!--include:object/index-->
+		<!--include:collection/index-->
+		<!--include:log/index-->
+		<!--include:vue/index-->	
+	<!--/if-->
+	
+	<!--include:donation/index-->	
+	<!--include:account/index-->
+	<!--include:menu/index-->
+			
+<!--/define:main-->

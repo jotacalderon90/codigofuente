@@ -1,0 +1,65 @@
+<div class="modal fade" id="users_modal_list">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="btn-group menu-inside btn-head left">
+					<button type="button" class="dropdown-toggle btn-head" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-bars"></i>
+					</button>
+					<ul class="dropdown-menu">
+						<li data-ng-click="ctrl.users.create()" data-dismiss="modal">
+							<i class="fa fa-plus"></i>
+						</li>
+						<li data-ng-click="ctrl.users.getTotal()">
+							<i class="fa fa-refresh"></i>
+						</li>
+						<li  data-dismiss="modal" data-toggle="modal" data-target="#users_modal_sort" >
+							<i class="fa fa-sort"></i>
+						</li>
+					</ul>
+				</div>
+				<h4 class="modal-title">
+					<span>Usuarios</span>
+				</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				
+				<div data-ng-repeat="row in ctrl.users.coll">
+					<a class="btn btn-primary btn-block" role="button" data-toggle="collapse" href="#users_user_action{{$index}}" aria-expanded="false" aria-controls="users_user_action{{$index}}">{{row.email}}</a>
+					<div class="collapse" id="users_user_action{{$index}}">
+						<div class="well">
+							<button class="btn btn-default btn-block" data-ng-click="ctrl.users.changeRoles(row)" title="actualizar roles">
+								<span>Actualizar roles</span>
+								<i class="fa fa-info-circle pull-right"></i>
+							</button>
+							<button class="btn btn-block" data-ng-class="(row.activate)?'btn-primary':'btn-warning'" data-ng-click="ctrl.users.activate(row)" title="{{((row.activate)?'Deshabilitar':'Habilitar')}}">
+								<span>{{((row.activate)?'Deshabilitar':'Habilitar')}}</span>
+								<i class="fa pull-right" data-ng-class="(row.activate)?'fa-link':'fa-unlink'"></i>
+							</button>
+							<button class="btn btn-info btn-block" data-ng-click="ctrl.users.changePassword(row)" title="actualizar contraseña">
+								<span>Cambiar contraseña</span>
+								<i class="fa pull-right">电</i>
+							</button>
+							<button class="btn btn-default btn-block" data-ng-click="ctrl.users.enableRecovery(row)" title="enviar correo para recuperar contraseña">
+								<span>Enviar correo para actualizar contraseña</span>
+								<i class="fa fa-envelope pull-right"></i>
+							</button>
+							<button class="btn btn-danger btn-block" data-ng-click="ctrl.users.delete(row._id)" title="eliminar usuario">
+								<span>Eliminar usuario</span>
+								<i class="fa fa-trash pull-right"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+				
+				<a>
+					<span data-ng-click="ctrl.users.getCollection()" data-ng-show="ctrl.users.obtained<ctrl.users.cant">cargar más...</span>
+					<span class="text text-info pull-right">{{ctrl.users.obtained}}/{{ctrl.users.cant}}</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

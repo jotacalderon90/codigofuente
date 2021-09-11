@@ -1,0 +1,23 @@
+<div class="modal fade" id="twitter_modal_setting">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">
+					Configuración
+				</h4>
+				<!--include:view/btn.close-->
+			</div>
+			<div class="modal-body text-justify">
+				<div class="form-group">
+					<textarea class="form-control" rows="20" data-ng-model="ctrl.twitter.setting_string" ></textarea>
+				</div>
+			</div>
+			<div class="modal-footer-bg"></div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" title="Actualizar" data-ng-click="ctrl.twitter.put_setting()" >
+					<i class="fa fa-check"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

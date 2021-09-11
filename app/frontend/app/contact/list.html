@@ -1,0 +1,33 @@
+<div class="modal fade" id="contact_modal_list">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Contactos</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body text-justify">
+				<div class="list-group">
+					<div class="list-group-item text-right" data-ng-repeat="row in ctrl.contact.coll">
+						<span class="pull-left">{{row.nickname}}</span>
+						<button class="btn btn-danger" data-ng-click="ctrl.contact.remove($index)">
+							<i class="fa fa-trash"></i>
+						</button>
+						<button class="btn btn-primary" data-ng-click="ctrl.contact.notify(row)">
+							<i class="fa fa-comment"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-default" type="button" data-toggle="modal" data-target="#contact_modal_form" data-dismiss="modal">
+					<i class="fa fa-user-plus"></i>
+				</button>
+				<button class="btn btn-default" type="button" data-toggle="modal" data-target="#contact_modal_about" data-dismiss="modal">
+					<i class="fa fa-question-circle"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

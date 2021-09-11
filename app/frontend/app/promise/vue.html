@@ -1,0 +1,33 @@
+
+<!--include:promise/message_vue-->
+<!--include:promise/prompt_vue-->
+
+<template id="component_promise">
+	<div id="promise">
+		<message></message>
+		<prompt></prompt>
+	</div>
+</template>
+
+<script>
+
+	Vue.component('promise',{
+		template: '#component_promise',
+		data: function(){
+			return {
+				properties: {
+					name: "promise", 
+					label: "Promesas", 
+					icon: "fa-file-text"
+				}
+			}
+		},
+		mounted: function(){
+			console.log('promise');
+			this.$parent.modules.push(this.properties.name);
+			this.$parent[this.properties.name] = this;
+		}
+	});
+
+	template += '<promise></promise>';
+</script>

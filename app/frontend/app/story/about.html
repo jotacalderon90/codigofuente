@@ -1,0 +1,24 @@
+<div class="modal fade" id="story_modal_about">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Información de {{ctrl.story.properties.label}}</h4>
+				<!--include:view/btn.close-->
+			</div>
+			<div class="modal-body text-justify" data-editable>
+				<!--editable-->
+				<p>Bienvenido a las historias, un módulo creado por mi amor...a la historia. Alrededor del año 2016 me dio por leer "Historia de Chile" y de eso se trató al principio.&nbsp;</p><p>Llené de tanta información que tuve que comenzar a ordenar bajo categorías para poder recorrerlas de manera más cómoda.&nbsp;</p><p>Eran tantos registros que literalmente me dio paja continuar y al final preferí seguir con la "Historia de la Informática" la cual me ayudaba a explicar cosas en mis clases particulares, esta quedó mucho mejor, la categorización quedó perfecta y con el tiempo termine creando mapas conceptuales de manera automática a partir de algoritmos que recorrían los registros. Una maravilla que dió paso a otro módulo orientado a la organización de conceptos.</p><p><br>Si te tinca publicar registros históricos de algo en particular, avísame. Si quieres tener tu propio registró histórico separado de mi página web, niun problema, esa es la idea de "Trascender".<br></p>
+				<!--/editable-->
+			</div>
+			<div class="modal-footer-bg" data-ng-show="ctrl.story.editHTML.canEdit"></div>
+			<div class="modal-footer" data-ng-show="ctrl.story.editHTML.canEdit">
+				<button type="button" class="btn btn-primary" title="Editar" data-ng-show="ctrl.story.editHTML.action!='edit'" data-ng-click="ctrl.story.editHTML.edit()"> 
+					<i class="fa fa-pencil"></i>
+				</button>
+				<button type="button" class="btn btn-primary" title="Guardar" data-ng-show="ctrl.story.editHTML.action=='edit'" data-ng-click="ctrl.story.editHTML.save()"> 
+					<i class="fa fa-save"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,40 @@
+<div class="modal fade" id="matrix_modal_form">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="left btn-head" data-ng-click="ctrl.pushStory('#matrix_modal_form')" data-toggle="modal" data-target="#matrix_modal_about" data-dismiss="modal" >
+					<i class="fa fa-info-circle"></i>
+				</button>
+				<h4 class="modal-title">Matrix</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body">
+				<table class="table">
+					<tr>
+						<th>Velocidad de caída</th>
+						<td>
+							<input type="number" class="form-control" min="1" max="1000" data-ng-model="ctrl.matrix.velocidad" data-ng-change="ctrl.matrix.restart()">
+						</td>
+					</tr>
+					<tr>
+						<th>Opacidad: {{ctrl.matrix.opacity}}</th>
+						<td>
+							<input type="range" min="0" max="1" step="0.1" data-ng-model="ctrl.matrix.opacity" data-ng-change="ctrl.matrix.restart()"/>
+						</td>
+					</tr>
+					<tr>
+						<th>Presione para {{((ctrl.matrix.active)?'desactivar':'activar')}}</th>
+						<td>
+							<label class="switch">
+								<input type="checkbox" data-ng-model="ctrl.matrix.active" data-ng-change="ctrl.matrix.restart()">
+								<span class="slider round"></span>
+							</label>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

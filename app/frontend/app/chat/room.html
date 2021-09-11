@@ -1,0 +1,24 @@
+<div class="modal fade" id="chat_modal_room">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="left btn-head" data-toggle="modal" data-target="#chat_modal_form" data-dismiss="modal">
+					<i class="fa fa-cog"></i>
+				</button>
+				<h4 class="modal-title">Chat</h4>
+				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+					<i class="fa fa-close"></i>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="jumbotron" data-ng-show="ctrl.socket.connected=='0'">
+					<p class="text-center text-warning">Socket no está activado. Favor active para poder utilizar esta aplicación.</p>
+				</div>
+				<ul class="list-group" id="chat_list" data-ng-show="ctrl.socket.connected=='1'"></ul>
+			</div>
+			<div class="modal-footer">
+				<input type="text" id="chat_input_message" class="form-control input-bottom" data-ng-model="ctrl.chat.message" placeholder="Escribe algo..." data-ng-keypress="ctrl.chat.keypress($event)" data-ng-show="ctrl.socket.connected=='1'"/>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,57 @@
+<!--comment-->
+<div class="block">
+	<link rel="stylesheet" href="app/comment/comment.css" media="all"/>
+	<div id="comment">
+		<div class="modal fade" id="comment_modal_main">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">
+							Comentarios
+						</h4>
+						<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
+							<i class="fa fa-close"></i>
+						</button>
+					</div>
+					<div class="modal-body text-justify">
+						
+							<!--FORM NEW-->
+							<div>
+								<br>	
+								<textarea class="form-control" rows="5" placeholder="Ingrese sus comentarios..." data-ng-model="ctrl.comment.newdoc.comment"></textarea>
+								<label>
+									<input type="checkbox" data-ng-model="ctrl.comment.newdoc.anonymous" />
+									<span>registrar de manera anonima</span>
+								</label>
+								<br>	
+								<button class="btn btn-success btn-block" data-ng-click="ctrl.comment.create()">Publicar en la página</button>
+								<br>	
+							</div>
+							<!--LIST-->
+							<div class="row">
+								<div class="col-md-8 col-md-offset-2">
+									<ul class="list-group comment_list">
+										<li class="list-group-item pull-left" data-ng-repeat="comment in ctrl.comment.coll">
+											<img src="/assets/media/img/logo.png" data-ng-src="{{ctrl.comment.users[comment.author].thumb}}" alt="autor del comentario" title="autor del comentario"/>
+											<b>{{ctrl.comment.users[comment.author].nickname}}</b>
+											<p>{{comment.comment}}</p>
+											<br>
+											<small title="{{comment.datetitle}}">{{comment.datefromnow}}</small>
+										</li>
+									</ul>
+									<div class="text-center" data-ng-show="ctrl.comment.obtained < ctrl.comment.cant">
+										<a data-ng-click="ctrl.comment.getCollection()">
+											cargar comentarios...
+											<br>
+											<span>{{ctrl.comment.obtained}}/{{ctrl.comment.cant}}</span>
+										</a>
+									</div>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="app/comment/comment.js"></script>
+</div>
