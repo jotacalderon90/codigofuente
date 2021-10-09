@@ -42,10 +42,6 @@
 		"login": "/",
 		"logout": "/user/login"
 	},
-	"push": {
-		"public": "BJutcL0PfojyGawD69JDnmwiP-TtwdNJ9G9t_894BcJh2Be_C_fyGk0UwMYMSsqV6XwMT0H7Qh02dybiaWSwzLU",
-		"private": "Xq5pxD8XN3fOZchl_PX616lG6ueCFaMKKaCfgn5OQPA"
-	},
 	"pwa":{
 		"manifest": {			
 			"name": "Trascender - PWA",
