@@ -449,7 +449,7 @@ app.modules.story = new trascender({
 		}else{
 			row.epoch = this.centuryFromYear(row.year);
 		}
-		row.uri = '/story/' + row.title;
+		//row.uri = '/story/' + row.title;
 		return row;
 	},
 	romanize: function(num) {
