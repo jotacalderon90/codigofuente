@@ -183,7 +183,8 @@ app.modules.story = new trascender({
 	},
 	
 	refreshAutocomplete: function(){
-		$("#" + this.properties.name + "_input_tag").autocomplete({source: this.tag, select: ( event, ui )=>{
+		console.log(this.setting.roles_tag.root);
+		$("#" + this.properties.name + "_input_tag").autocomplete({source: this.setting.roles_tag.root ||this.tag, select: ( event, ui )=>{
 			this.getDoc().tagbk = ui.item.value;
 		}});
 	},
@@ -240,11 +241,6 @@ app.modules.story = new trascender({
 		this.query = {day: this.date.getDate(),month: this.date.getMonth() + 1};
 		$('#story_modal_list .modal-content').animate({scrollTop: 0}, 1000);
 		this.restart();
-	},
-	getByTodayFS: async function(){
-		this.getByToday();
-		await this.wait(500);
-		this.showCollectionInMap();
 	},
 	
 	getTag: async function(){
@@ -406,6 +402,11 @@ app.modules.story = new trascender({
 		this.edit(this.formatToClient(row));
 		this.parent.refreshView();
 		$("#" + this.properties.name + "_modal_form").modal("show");
+	},
+	getByTodayFS: async function(){
+		this.getByToday();
+		await this.wait(500);
+		this.showCollectionInMap();
 	},
 	
 	/********/
