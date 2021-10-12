@@ -33,13 +33,32 @@ app.modules.twitter = new trascender({
 		let s;
 		
 		s = await this.parent.promise.selector('Seleccionar', this.tag.map((r)=>{return {label:r.label, value:r.label}}));
-		s = await fetch('/assets/media/json/' + s.toLowerCase() + '.json');
-		s = await s.json();
 		
-		this.parent.map.open();
-		await this.wait(1000);
-		this.parent.map.refresh();
-		this.parent.map.loadTopojsonDATA(null,s);
+		$(".loader").fadeIn();
+		
+		s = await this.service_collection({query: JSON.stringify({tag: s}),options: JSON.stringify({projection:{title:1}})});
+		
+		$(".loader").fadeOut();
+		
+		s = await this.parent.promise.selector('Seleccionar', s.map((r)=>{return {label: r.title, value:r._id}}));
+		
+		$(".loader").fadeIn();
+		
+		this.doc = await this.service_read({id: s});
+		this.doc = this.formatToClient(this.doc);
+		
+		$('#twitter_modal_document').modal('show');
+		$(".loader").fadeOut();
+		
+		//s = await fetch('/assets/media/json/' + s.toLowerCase() + '.json');
+		//s = await s.json();
+		
+		
+		
+		//this.parent.map.open();
+		//await this.wait(1000);
+		//this.parent.map.refresh();
+		//this.parent.map.loadTopojsonDATA(null,'twitter',s);
 		
 	},
 	start: function(){
@@ -559,6 +578,10 @@ app.modules.twitter = new trascender({
 			...r.map,
 			popup: '<b>' + r.title + '</b><br />'
 		};
+	},
+	afterSelectInMap: function(doc){
+		console.log(1,doc);
+		$('#map_modal_main').modal('hide');
 	},
 	
 	/***********************/
