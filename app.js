@@ -152,7 +152,7 @@ self.prototype.setDefaultExpress = function(){
 	this.express.use(upload());
 	this.express.use(helmet());
 	this.server = http.Server(this.express);
-	this.render = new render(this, __dirname + config.properties.views);
+	this.render = new render({...this,config: config}, __dirname + config.properties.views);
 	
 	if(config.properties.cors===true){
 		this.express.use(cors());
