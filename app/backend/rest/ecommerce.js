@@ -4,7 +4,6 @@ const fs = require("fs");
 
 const self = function(a){
 	this.dir = a.dir;
-	this.config = a.config;
 	this.helper = a.helper;
 	this.mailing = a.mailing;
 	this.mongodb = a.mongodb;
@@ -12,9 +11,9 @@ const self = function(a){
 	
 	this.setWorkflow("ecommerce");
 	
-	if(a.config.recaptcha && a.config.recaptcha.enabled===true){
+	if(config.recaptcha && config.recaptcha.enabled===true){
 		this.recaptcha = require("express-recaptcha");
-		this.recaptcha.init(a.config.recaptcha.public,a.config.recaptcha.private);
+		this.recaptcha.init(config.recaptcha.public,config.recaptcha.private);
 		this.recaptcha.render();
 	}
 	
@@ -25,33 +24,33 @@ self.prototype.setMemo = function(doc){
 	doc.subject = this.workflow.on[doc.status.toString()].subject;
 	doc.text = this.workflow.on[doc.status.toString()].text;
 	doc.title = this.workflow.on[doc.status.toString()].title;
-	doc.config = this.config;
+	doc.config = config;
 	return doc;
 }
 	
 self.prototype.setMemoClient = function(doc){
 	doc.to = doc.email;
-	doc.bcc = this.config.properties.admin;
+	doc.bcc = config.properties.admin;
 	doc.btn = this.workflow.on[doc.status.toString()].btnToClient;
 	if(doc.btn!=undefined){
 		for(var i=0;i<doc.btn.length;i++){
-			doc.btn[i].href = this.config.properties.host + "/" + "ecommerce" + "/transaction/" + (new Buffer(doc.insertedId).toString("base64"));
+			doc.btn[i].href = config.properties.host + "/" + "ecommerce" + "/transaction/" + (new Buffer(doc.insertedId).toString("base64"));
 		}
 	}
-	doc.html = this.render.processTemplateByPath(this.dir + this.config.properties.views + "ecommerce/memo.html",doc);
+	doc.html = this.render.processTemplateByPath(this.dir + config.properties.views + "ecommerce/memo.html",doc);
 	return doc;
 }
 	
 self.prototype.setMemoAdmin = function(doc){
 	doc.subject = doc.subject + " [copia al administrador]";
-	doc.to = this.config.properties.admin;
+	doc.to = config.properties.admin;
 	doc.btn = this.workflow.on[doc.status.toString()].btnToAdmin;
 	if(doc.btn!=undefined){
 		for(var i=0;i<doc.btn.length;i++){
-			doc.btn[i].href = this.config.properties.host + "/" + "ecommerce" + "/transaction/" + (new Buffer(doc.insertedId+":"+doc.insertedId).toString("base64"));
+			doc.btn[i].href = config.properties.host + "/" + "ecommerce" + "/transaction/" + (new Buffer(doc.insertedId+":"+doc.insertedId).toString("base64"));
 		}
 	}
-	doc.html = this.render.processTemplateByPath(this.dir + this.config.properties.views + "ecommerce/memo.html",doc);
+	doc.html = this.render.processTemplateByPath(this.dir + config.properties.views + "ecommerce/memo.html",doc);
 	return doc;
 }
 
@@ -107,7 +106,7 @@ self.prototype.ecommerce_create = async function(req,res){
 		doc.insertedId = row.insertedId.toString();
 		doc = this.setMemo(doc);
 		
-		if(this.config.smtp.enabled){
+		if(config.smtp.enabled){
 			//send notification to client
 			doc = this.setMemoClient(doc);
 			await this.mailing.send(doc);
@@ -148,9 +147,9 @@ self.prototype.ecommerce_read = async function(req,res){
 			document:	row, 
 			title:		this.workflow.on[row.status.toString()].title,
 			message:	this.workflow.on[row.status.toString()].message,
-			action:		this.config.properties.host + "/" + "ecommerce" + "/transaction/" + new Buffer((isadmin)?params[0] + ":" + params[0]:params[0]).toString("base64"),
+			action:		config.properties.host + "/" + "ecommerce" + "/transaction/" + new Buffer((isadmin)?params[0] + ":" + params[0]:params[0]).toString("base64"),
 			btn:		this.workflow.on[row.status.toString()][((isadmin)?"btnToAdmin":"btnToClient")],
-			config:		this.config
+			config:		config
 		});
 		
 	}catch(e){
@@ -217,9 +216,9 @@ self.prototype.ecommerce_update = async function(req,res){
 			document:	row, 
 			title:		this.workflow.on[row.status.toString()].title,
 			message:	this.workflow.on[row.status.toString()].message,
-			action:		this.config.properties.host + "/" + "ecommerce" + "/transaction/" + new Buffer((isadmin)?params[0] + ":" + params[0]:params[0]).toString("base64"),
+			action:		config.properties.host + "/" + "ecommerce" + "/transaction/" + new Buffer((isadmin)?params[0] + ":" + params[0]:params[0]).toString("base64"),
 			btn:		this.workflow.on[row.status.toString()][((isadmin)?"btnToAdmin":"btnToClient")],
-			config:		this.config
+			config:		config
 		});
 	}catch(e){
 		console.log(e);
@@ -234,7 +233,7 @@ self.prototype.ecommerce_update = async function(req,res){
 self.prototype.render_other = async function(req,res,next){
 	let view = "ecommerce" + "/" + req.params.id;
 	if(this.helper.exist(view)){
-		res.render(view,{config: this.config});
+		res.render(view,{config: config});
 	}else{
 		return next();
 	}

@@ -1,8 +1,11 @@
 "use strict";
 
-let self = function(a,p){
-	this.config = a.config;
+const mongo = require('../mongodb');
+
+const self = function(a,p){
 	this.mongodb = a.mongodb;
+	
+	console.log(mongo);
 }
 
 
@@ -15,7 +18,7 @@ self.prototype.renderCollection = async function(req,res){
 		res.render("wall/collection",{title: "Muro", rows: data});
 	}catch(e){
 		console.log(e);
-		res.status(500).render("message",{title: "Error en el Servidor", message: e.toString(), error: 500, class: "danger", config: this.config});
+		res.status(500).render("index",this.helper.toRenderError(req,e));
 	}
 }
 
@@ -29,7 +32,7 @@ self.prototype.renderCollectionTag = async function(req,res){
 		res.render("wall/collection",{title: req.params.id.charAt(0).toUpperCase() + req.params.id.slice(1),rows: data});
 	}catch(e){
 		console.log(e);
-		res.status(500).render("message",{title: "Error en el Servidor", message: e.toString(), error: 500, class: "danger", config: this.config});
+		res.status(500).render("index",this.helper.toRenderError(req,e));
 	}
 }
 

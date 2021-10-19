@@ -7,7 +7,6 @@ const https  = require("https");
 
 const self = function(a){
 	this.dir = (a && a.dir)?a.dir:null;
-	this.config = (a && a.config)?a.config:null;
 	this.socket_methods = [];
 }
 
@@ -57,7 +56,7 @@ self.prototype.isEmail = function(email){
 }
 
 self.prototype.exist = function(path){
-	if(fs.existsSync(this.dir + this.config.properties.views + "/" + path + ".html")){
+	if(fs.existsSync(this.dir + config.properties.views + "/" + path + ".html")){
 		return true;
 	}else{
 		return false;
@@ -115,7 +114,7 @@ self.prototype.upload_process = function(file,path){
 }
 
 self.prototype.toRender = function(req){
-	return {user: req.user, ip: req.real_ip, headers: req.headers};
+	return {user: req.user, ip: req.real_ip, headers: req.headers, btnCloseToIndex: false};
 }
 
 self.prototype.toRenderError = function(req,e){

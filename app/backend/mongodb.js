@@ -4,6 +4,7 @@ const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
 
 const self = function(){
+	console.log('llamando new mongo');
 	this.call = 0;
 	this.started = new Date();
 	if(config.database){
@@ -183,4 +184,4 @@ self.prototype.updateMany = function(collection,query,options){
 	});
 }
 
-module.exports = self;
+module.exports = new self();

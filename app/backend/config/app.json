@@ -5,17 +5,12 @@
 		"admin": "demo@demo.cl",
 		"secret": "trascender-con-sso",
 		"cors": true,
-		"views": "/app/frontend/app/",
 		"meta": {
 			"keywords": "informática,software,programación,pwa,algoritmo",
 			"description": "CMS basado en trascender",
 			"author": "@jotace",
 			"title": "Trascender - PWA"
-		},
-		"log": "./app/backend/log/app.csv",
-		"limit": "50mb",
-		"object": "./app/backend/script/objects.json",
-		"lib": "./app/backend/lib/"
+		}
 	},
 	"database": {
 		"url": "mongodb://127.0.0.1:27017",
@@ -42,10 +37,6 @@
 			"redirect": ""
 		}
 	},
-	"on": {
-		"login": "/",
-		"logout": "/user/login"
-	},
 	"pwa": {
 		"manifest": {
 			"name": "Trascender - PWA",
@@ -68,26 +59,6 @@
 			]
 		}
 	},
-	"files": [
-		{
-			"uri": "/favicon.ico",
-			"src": "/app/frontend/assets/media/img/favicon.ico"
-		},
-		{
-			"uri": "/robots.txt",
-			"src": "/app/frontend/assets/media/doc/robots.txt"
-		},
-		{
-			"uri": "/sw.js",
-			"src": "/app/frontend/assets/pwa/sw.js"
-		}
-	],
-	"folders": [
-		{
-			"uri": "/",
-			"src": "/app/frontend"
-		}
-	],
 	"push": {
 		"public": "BLoRuBO4-0F548oOmkA07hqkGKtWMvJFaR6UaGqkTYCVXwi6U14F-uaUz21LvMcjBMUjcJ-lLumju4fPf-sOBKA",
 		"private": "6lKS8QTxiMV7h_fju1pWCj-t6qNrXzF6snvMtoETMuI"

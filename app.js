@@ -63,6 +63,9 @@ self.prototype.start = async function(){
 	
 	logger('set default express');
 	this.setDefaultExpress();
+
+const mon = require('./app/backend/mongodb');
+console.log(mon);	
 	
 	logger('import local libs');
 	this.importLIBS();
@@ -73,7 +76,7 @@ self.prototype.start = async function(){
 	}
 	
 	logger('execute first start');
-	if(!fs.existsSync(this.config.properties.log)){
+	if(!fs.existsSync(config.properties.log)){
 		await this.importDefaultData();
 		await this.configDefaultRoot();
 	}
@@ -94,7 +97,7 @@ self.prototype.start = async function(){
 	this.public404();
 	
 	logger('open Port');
-	this.openPort(this.config.properties.port)	
+	this.openPort(config.properties.port)	
 }
 
 self.prototype.setDefaultData = function(){
@@ -112,50 +115,52 @@ self.prototype.setDefaultData = function(){
 	}
 	const m = (this.args.module || 'app');
 	
-	this.config = JSON.parse(fs.readFileSync('./app/backend/config/' + m + '.json','utf8'));
+	const config = JSON.parse(fs.readFileSync('./app/backend/config/app.json','utf8'));
 	
-	this.config.properties.log = './app/backend/log/' + m + '.csv';
-	this.config.properties.limit = '50mb';
-	this.config.properties.object = './app/backend/script/objects.json';
-	this.config.properties.lib = './app/backend/lib/';
-	this.config.properties.views = '/app/frontend/app/';
+	config.properties.log = './app/backend/log/' + m + '.csv';
+	config.properties.limit = '50mb';
+	config.properties.object = './app/backend/script/objects.json';
+	config.properties.lib = './app/backend/lib/';
+	config.properties.views = '/app/frontend/app/';
 	
-	this.config.files = (this.config.files)?this.config.files:[];
-	this.config.files.push({uri: '/favicon.ico',	src: '/app/frontend/assets/media/img/favicon.ico'});
-	this.config.files.push({uri: '/robots.txt',		src: '/app/frontend/assets/media/doc/robots.txt'});
-	this.config.files.push({uri: '/sw.js',			src: '/app/frontend/assets/pwa/sw.js'});
+	config.files = (config.files)?config.files:[];
+	config.files.push({uri: '/favicon.ico',	src: '/app/frontend/assets/media/img/favicon.ico'});
+	config.files.push({uri: '/robots.txt',		src: '/app/frontend/assets/media/doc/robots.txt'});
+	config.files.push({uri: '/sw.js',			src: '/app/frontend/assets/pwa/sw.js'});
 	
-	this.config.folders = (this.config.folders)?this.config.folders:[];
-	this.config.folders.push({uri: '/', src: '/app/frontend'});
+	config.folders = (config.folders)?config.folders:[];
+	config.folders.push({uri: '/', src: '/app/frontend'});
+
+	global.config = config;
 }
 
 self.prototype.setDefaultExpress = function(){
 	this.express = express();
-	this.express.use(bodyParser.json({limit: this.config.properties.limit})); 
+	this.express.use(bodyParser.json({limit: config.properties.limit})); 
 	this.express.use(bodyParser.urlencoded({extended: true}));
 	this.express.use(cookieParser());
 	this.express.use(compression());
 	
 	const sessionOptions = {
-		secret: this.config.properties.secret,
+		secret: config.properties.secret,
 		resave: false,
 		saveUninitialized: false,
-		cookie: (this.config.properties.cookie_domain)?this.config.properties.cookie_domain:undefined
+		cookie: (config.properties.cookie_domain)?config.properties.cookie_domain:undefined
 	}
 	
 	this.express.use(session(sessionOptions));
 	this.express.use(upload());
 	this.express.use(helmet());
 	this.server = http.Server(this.express);
-	this.render = new render(this, __dirname + this.config.properties.views);
+	this.render = new render(this, __dirname + config.properties.views);
 	
-	if(this.config.properties.cors===true){
+	if(config.properties.cors===true){
 		this.express.use(cors());
 	}
 }
 
 self.prototype.importLIBS = function(){
-	const libFolder = this.config.properties.lib;
+	const libFolder = config.properties.lib;
 	if(fs.existsSync(libFolder)){
 		const libs = fs.readdirSync(libFolder,"utf8").filter((row)=>{
 			return fs.statSync(path.join(libFolder,row)).isFile();
@@ -170,7 +175,7 @@ self.prototype.importLIBS = function(){
 
 self.prototype.importDefaultData = async function(){
 	let r;
-	const objects = JSON.parse(fs.readFileSync(this.config.properties.object,"utf8"));
+	const objects = JSON.parse(fs.readFileSync(config.properties.object,"utf8"));
 	for(let i=0;i<objects.length;i++){
 		r = await this.mongodb.count("object",{name: objects[i].name});
 		if(r==0){
@@ -289,7 +294,7 @@ self.prototype.new_request = function(req){
 	content += req.method + ";";
 	content += JSON.stringify(req.body);
 	console.log(content);
-	fs.appendFile(this.config.properties.log, content, function (err) {});		
+	fs.appendFile(config.properties.log, content, function (err) {});		
 }
 
 self.prototype.getFile = function(file){
@@ -305,25 +310,25 @@ self.prototype.getRedirect = function(to){
 }
 
 self.prototype.publicFiles = function(){
-	if(this.config.files){
-		for(let i=0;i<this.config.files.length;i++){
-			this.express.get(this.config.files[i].uri, this.beforeExecute({type: "FILE", roles: this.config.files[i].roles}), this.getFile(this.dir + this.config.files[i].src));
+	if(config.files){
+		for(let i=0;i<config.files.length;i++){
+			this.express.get(config.files[i].uri, this.beforeExecute({type: "FILE", roles: config.files[i].roles}), this.getFile(this.dir + config.files[i].src));
 		}
 	}
 }
 
 self.prototype.publicFolders = function(){
-	if(this.config.folders){
-		for(let i=0;i<this.config.folders.length;i++){
-			this.express.use(this.config.folders[i].uri, this.beforeExecute({type: "FOLDER", roles: this.config.folders[i].roles}), express.static(this.dir + this.config.folders[i].src));
+	if(config.folders){
+		for(let i=0;i<config.folders.length;i++){
+			this.express.use(config.folders[i].uri, this.beforeExecute({type: "FOLDER", roles: config.folders[i].roles}), express.static(this.dir + config.folders[i].src));
 		}
 	}
 }
 
 self.prototype.publicRedirect = function(){
-	if(this.config.redirect){
-		for(let i=0;i<this.config.redirect.length;i++){
-			this.express.use(this.config.redirect[i].from, this.beforeExecute({type: "REDIRECT", roles: this.config.redirect[i].roles}), this.getRedirect(this.config.redirect[i].to));
+	if(config.redirect){
+		for(let i=0;i<config.redirect.length;i++){
+			this.express.use(config.redirect[i].from, this.beforeExecute({type: "REDIRECT", roles: config.redirect[i].roles}), this.getRedirect(config.redirect[i].to));
 		}
 	}
 }
@@ -331,7 +336,7 @@ self.prototype.publicRedirect = function(){
 self.prototype.public404 = function(){
 	this.express.use(function(req,res,next){
 		logger("error 404 " + req.originalUrl);
-		res.status(404).render("index",{user: req.user, ip: req.real_ip, onOpen: {app: "promise", action: "messageFromServer", data: {title: "Error 404", msg: "URL not found: " + req.originalUrl, class: "danger"}}});
+		res.status(404).render("404",{user: req.user, ip: req.real_ip, onOpen: {app: "promise", action: "messageFromServer", data: {title: "Error 404", msg: "URL not found: " + req.originalUrl, class: "danger"}}});
 	});
 }
 

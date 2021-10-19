@@ -27,28 +27,8 @@ app.modules.twitter = new trascender({
 			await this.firstOpen();
 			$(".loader").fadeOut();
 		}
-		
+		this.selectTwitter();
 		//$("#" + this.properties.name + "_modal_tag").modal("show");
-		
-		let s;
-		
-		s = await this.parent.promise.selector('Seleccionar', this.tag.map((r)=>{return {label:r.label, value:r.label}}));
-		
-		$(".loader").fadeIn();
-		
-		s = await this.service_collection({query: JSON.stringify({tag: s}),options: JSON.stringify({projection:{title:1}})});
-		
-		$(".loader").fadeOut();
-		
-		s = await this.parent.promise.selector('Seleccionar', s.map((r)=>{return {label: r.title, value:r._id}}));
-		
-		$(".loader").fadeIn();
-		
-		this.doc = await this.service_read({id: s});
-		this.doc = this.formatToClient(this.doc);
-		
-		$('#twitter_modal_document').modal('show');
-		$(".loader").fadeOut();
 		
 		//s = await fetch('/assets/media/json/' + s.toLowerCase() + '.json');
 		//s = await s.json();
@@ -69,7 +49,33 @@ app.modules.twitter = new trascender({
 		await this.set_setting();
 		this.refreshAutocomplete();
 		this.started = true;
-		this.parent.refreshView();
+		//this.parent.refreshView();
+	},
+	selectTwitter: async function(){
+		
+		let s;
+		
+		s = await this.parent.promise.selector('Seleccionar', this.tag.map((r)=>{return {label:r.label, value:r.label}}));
+		
+		$(".loader").fadeIn();
+		
+		s = await this.service_collection({query: JSON.stringify({tag: s}),options: JSON.stringify({projection:{title:1}})});
+		await this.wait(500);
+		
+		$(".loader").fadeOut();
+		
+		s = await this.parent.promise.selector('Seleccionar', s.map((r)=>{return {label: r.title, value:r._id}}));
+		await this.wait(500);
+		
+		$(".loader").fadeIn();
+		
+		this.doc = await this.service_read({id: s});
+		
+		this.doc = this.formatToClient(this.doc);
+		
+		$('#twitter_modal_document').modal('show');
+		$(".loader").fadeOut();
+		
 	},
 	
 	/**************/

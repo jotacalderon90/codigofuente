@@ -2,8 +2,8 @@
 
 const jwt = require("jwt-simple");
 
-const self = function(application){
-	this.secret = application.config.properties.secret;
+const self = function(){
+
 }
 
 self.prototype.encode = function(user){
@@ -14,12 +14,12 @@ self.prototype.encode = function(user){
 		//roles: user.roles,
 		iat: iat,
 		exp: exp
-	},this.secret);
+	},config.properties.secret);
 }
 
 self.prototype.decode = function(token){
 	try{
-		const payload = jwt.decode(token,this.secret);
+		const payload = jwt.decode(token,config.properties.secret);
 		if(new Date(payload.exp) <= new Date()){
 			throw("expired");
 		}

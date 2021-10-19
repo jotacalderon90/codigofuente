@@ -4,7 +4,6 @@ const fs = require('fs');
 
 const self = function(a){
 	this.dir = a.dir;
-	this.config = a.config;
 	this.mongodb = a.mongodb;
 	this.helper = a.helper;
 	this.microservice = a.microservice;

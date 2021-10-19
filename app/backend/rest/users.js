@@ -4,7 +4,6 @@ const fs = require("fs");
 
 const self = function(a){
 	this.dir = a.dir;
-	this.config = a.config;
 	this.mailing = a.mailing;
 	this.render = a.render;
 	this.mongodb = a.mongodb;
@@ -115,10 +114,10 @@ self.prototype.update = async function(req,res){
 			case 'notify':
 				const memo = {};
 				memo.to = row.email;
-				memo.bcc = this.config.properties.admin;
+				memo.bcc = config.properties.admin;
 				memo.subject = "Reestablecer contraseña";
-				memo.hash = this.config.properties.host + "/account/recovery?hash=" + new Buffer(row.password).toString("base64");
-				memo.html = this.render.processTemplateByPath(this.dir + this.config.properties.views + "account/memo.recovery.html", memo);
+				memo.hash = config.properties.host + "/account/recovery?hash=" + new Buffer(row.password).toString("base64");
+				memo.html = this.render.processTemplateByPath(this.dir + config.properties.views + "account/memo.recovery.html", memo);
 				await this.mailing.send(memo);
 			break;
 			case 'roles':

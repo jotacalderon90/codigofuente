@@ -281,7 +281,7 @@ self.prototype.file_upload = async function(req,res){
 		//res.send({data: true});
 		res.redirect("/directory");
 	}catch(e){
-		res.status(500).render("message",{title: "Error en el Servidor", message: e.toString(), error: 500, class: "danger", config: this.config});
+		res.status(500).render("index",this.helper.toRenderError(req,e));
 	}
 }
 

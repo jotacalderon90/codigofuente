@@ -4,14 +4,14 @@ const http	= require("http");
 const https	= require("https");
 const querystring = require('querystring');
 
-const self = function(a){
-	this.config = (a && a.config)?a.config:null;
+const self = function(){
+	
 }
 
 
 self.prototype.options = function(method,path,data){
 	return {
-		hostname: this.config.host,
+		hostname: config.host,
 		path: path,
 		method: method.toUpperCase(),
 		headers: {
@@ -28,7 +28,7 @@ self.prototype.request = function(method,path,data){
 
 	const options = this.options(method,path,data);
 
-	path = this.config.host + path;
+	path = config.host + path;
 
 	const src = (path.indexOf("https://")==0)?https:http;
 	

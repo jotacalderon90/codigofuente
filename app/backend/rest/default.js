@@ -2,16 +2,15 @@
 
 const self = function(a){
 	this.dir = a.dir;
-	this.config = a.config;
 	this.helper = a.helper;
 	this.mailing = a.mailing;
 	this.mongodb = a.mongodb;
 	this.render = a.render;
 	this.push = a.push;
 	
-	if(this.config.recaptcha && this.config.recaptcha.enabled===true){
+	if(config.recaptcha && config.recaptcha.enabled===true){
 		this.recaptcha = require("express-recaptcha");
-		this.recaptcha.init(this.config.recaptcha.public,this.config.recaptcha.private);
+		this.recaptcha.init(config.recaptcha.public,config.recaptcha.private);
 		this.recaptcha.render();
 	}
 }
@@ -19,7 +18,7 @@ const self = function(a){
 self.prototype.setDefaultBody = function(req){
 	req.body.created = new Date();
 	req.body.to = req.body.email;
-	req.body.html = this.render.processTemplateByPath(this.dir + this.config.properties.views + "message/memo.html",req.body);
+	req.body.html = this.render.processTemplateByPath(this.dir + config.properties.views + "message/memo.html",req.body);
 	return req;
 }
 self.prototype.insertUserIfNotExist = async function(req){
@@ -87,7 +86,7 @@ self.prototype.message = async function(req,res,next){
 		}
 		req = this.setDefaultBody(req);
 		this.mongodb.insertOne("message",req.body);
-		if(this.config.smtp.enabled){
+		if(config.smtp.enabled){
 			this.mailing.send(req.body);
 		}
 		this.insertUserIfNotExist(req);
@@ -103,7 +102,7 @@ self.prototype.message = async function(req,res,next){
 //@method(['get'])
 */
 self.prototype.manifest = async function(req,res,next){
-	res.json(this.config.pwa.manifest);
+	res.json(config.pwa.manifest);
 }
 
 module.exports = self;

@@ -5,7 +5,6 @@ const path = require("path");
 
 const self = function(a){
 	this.dir = a.dir;
-	this.config = a.config;
 	this.mailing = a.mailing;
 	this.mongodb = a.mongodb;
 	this.render = a.render;
@@ -95,7 +94,7 @@ self.prototype.message = async function(req,res){
 		req.body.pxmagico = d.insertedId.toString();
 		
 		if(req.body.template){
-			req.body.html = this.render.processTemplateByPath(this.dir + this.config.properties.views + "mailing/memo." + req.body.template + ".html",req.body);
+			req.body.html = this.render.processTemplateByPath(this.dir + config.properties.views + "mailing/memo." + req.body.template + ".html",req.body);
 			await this.mongodb.updateOne('mailing',req.body.pxmagico,{$set: {html: req.body.html}});
 		}
 		

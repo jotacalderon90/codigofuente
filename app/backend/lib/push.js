@@ -4,20 +4,31 @@ const fs = require("fs");
 const webpush = require('web-push');
 
 const self = function(a){
-	if(!a.config.push){
+	
+	let publicKey,privateKey;
+	
+	if(config.push){
+		
+		publicKey = config.push.public;
+		privateKey = config.push.private;
+	
+	}else{
+	
 		const vapidKeys = webpush.generateVAPIDKeys();
-		a.config.push = {
-			public: vapidKeys.publicKey,
-			private: vapidKeys.privateKey
-		}
-		fs.writeFileSync(a.dir + "/app/backend/config/app.json",JSON.stringify(a.config,undefined,"\t"));
+		publicKey = vapidKeys.publicKey;
+		privateKey = vapidKeys.privateKey;
+		
+		const c = JSON.parse(fs.readFileSync('./app/backend/config/app.json','utf8'));
+		
+		c.push = {public: publicKey, private: privateKey};
+		
+		fs.writeFileSync(a.dir + "/app/backend/config/app.json",JSON.stringify(c,undefined,"\t"));
+	
 	}
-	webpush.setVapidDetails(
-		'mailto:' + a.config.properties.admin,
-		a.config.push.public,
-		a.config.push.private
-	);
-	this.publicKey = a.config.push.public;
+	
+	webpush.setVapidDetails('mailto:' + config.properties.admin, publicKey, privateKey);
+	
+	this.publicKey = publicKey;
 	this.mongodb = a.mongodb;
 }
 

@@ -2,7 +2,6 @@
 
 const self = function(a){
 	this.dir = a.dir;
-	this.config = a.config;
 	this.auth = a.auth;
 	this.helper = a.helper;
 	this.mailing = a.mailing;
@@ -10,14 +9,14 @@ const self = function(a){
 	this.render = a.render;
 	this.push = a.push;
 	
-	if(this.config.recaptcha && this.config.recaptcha.enabled===true){
+	if(config.recaptcha && config.recaptcha.enabled===true){
 		this.recaptcha = require("express-recaptcha");
-		this.recaptcha.init(this.config.recaptcha.public,this.config.recaptcha.private);
+		this.recaptcha.init(config.recaptcha.public,config.recaptcha.private);
 		this.recaptcha.render();
 	}
 	
 	this.google_url = "";
-	if(this.config.google && this.config.google.auth && this.config.google.auth.enabled){
+	if(config.google && config.google.auth && config.google.auth.enabled){
 		this.google = a.google;
 		this.google_url = this.google.getURL();
 	}
@@ -34,8 +33,8 @@ self.prototype.removeLogged = async function(req){
 }
 
 self.prototype.cookie = function(res,cookie){
-	if(this.config.properties.cookie_domain){
-		res.cookie("Authorization", cookie, { domain: this.config.properties.cookie_domain, path: "/", secure: true });
+	if(config.properties.cookie_domain){
+		res.cookie("Authorization", cookie, { domain: config.properties.cookie_domain, path: "/", secure: true });
 	}else{
 		res.cookie("Authorization",cookie);
 	}
@@ -70,16 +69,16 @@ self.prototype.create = async function(req,res){
 		doc.thumb = "/assets/media/img/user.png";
 		doc.roles = ["user"];
 		doc.created = new Date();
-		doc.activate = (this.config.smtp.enabled)?false:true;
+		doc.activate = (config.smtp.enabled)?false:true;
 		await this.mongodb.insertOne("user",doc);
 		this.push.notificateToAdmin("new user",req.body.email);
-		if(this.config.smtp.enabled===true){
+		if(config.smtp.enabled===true){
 			let memo = {};
 			memo.to = doc.email;
 			memo.subject = "Activación de cuenta"
 			memo.nickname = doc.nickname;
-			memo.hash = this.config.properties.host + "/account/activate/" + new Buffer(doc.password).toString("base64");
-			memo.html = this.render.processTemplateByPath(this.dir + this.config.properties.views + "account/memo.activate.html", memo);
+			memo.hash = config.properties.host + "/account/activate/" + new Buffer(doc.password).toString("base64");
+			memo.html = this.render.processTemplateByPath(this.dir + config.properties.views + "account/memo.activate.html", memo);
 			await this.mailing.send(memo);
 			this.helper.renderMessage(req,res,'Usuario registrado','Se ha enviado un correo para validar su registro');
 		}else{
@@ -229,10 +228,10 @@ self.prototype.forget = async function(req,res){
 		}
 		let memo = {};
 		memo.to = req.body.email;
-		memo.bcc = this.config.properties.admin;
+		memo.bcc = config.properties.admin;
 		memo.subject = "Reestablecer contraseña";
-		memo.hash = this.config.properties.host + "/account/recovery?hash=" + new Buffer(user[0].password).toString("base64");
-		memo.html = this.render.processTemplateByPath(this.dir + this.config.properties.views + "account/memo.recovery.html", memo);
+		memo.hash = config.properties.host + "/account/recovery?hash=" + new Buffer(user[0].password).toString("base64");
+		memo.html = this.render.processTemplateByPath(this.dir + config.properties.views + "account/memo.recovery.html", memo);
 		await this.mailing.send(memo);
 		this.push.notificateToAdmin("user forget",req.body.email);
 		this.helper.renderMessage(req,res,'Recuperación de cuenta','Se ha enviado un correo para poder reestablecer su contraseña');

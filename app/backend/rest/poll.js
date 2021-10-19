@@ -4,7 +4,6 @@ const fs = require("fs");
 
 const self = function(a){
 	this.dir		= a.dir;
-	this.config		= a.config;
 	this.helper		= a.helper;
 	this.mailing	= a.mailing;
 	this.mongodb	= a.mongodb;
@@ -164,11 +163,11 @@ self.prototype.notify = async function(req,res){
 			to: to,
 			subject: row.title,
 			poll: row,
-			encode: this.config.properties.host + "/api/poll/" + row._id + "/answer/" + hash
+			encode: config.properties.host + "/api/poll/" + row._id + "/answer/" + hash
 		}
 		
 		//set template
-		doc.html = this.render.processTemplateByPath(this.dir + this.config.properties.views + "poll/memo.poll.html", doc);
+		doc.html = this.render.processTemplateByPath(this.dir + config.properties.views + "poll/memo.poll.html", doc);
 		
 		//send memo
 		await this.mailing.send(doc);
@@ -216,7 +215,7 @@ self.prototype.answer = async function(req,res){
 								content: row.content,
 								option:row.options
 							}, 
-							action: this.config.properties.host +"/api/poll/" + row._id + "/answer/" + req.params.encode
+							action: config.properties.host +"/api/poll/" + row._id + "/answer/" + req.params.encode
 						}
 					}
 				});
@@ -263,7 +262,7 @@ self.prototype.answer_anon = async function(req,res){
 								content: row.content,
 								option:row.options
 							}, 
-							action: this.config.properties.host +"/api/poll/" + row._id + "/answer/"
+							action: config.properties.host +"/api/poll/" + row._id + "/answer/"
 						}
 					}
 				});

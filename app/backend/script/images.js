@@ -1,7 +1,7 @@
 const fs = require('fs');
 const request = require('request');
-const config = JSON.parse(fs.readFileSync("../../../app.json","utf8"));
-const mongodb = new (require("../lib/mongodb"))({config: config});
+global.config = JSON.parse(fs.readFileSync("../../../app.json","utf8"));
+const mongodb = new (require("../lib/mongodb"))();
 
 const self = function(){
 	this.start();
