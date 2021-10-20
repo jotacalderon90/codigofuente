@@ -595,7 +595,7 @@ app.modules.story = new trascender({
 		return {
 			...r.map,
 			audio: r.audio,
-			popup: '<img width="50%" style="float:left;margin-right: 10px;" src="' + r.img + '"/><b>' + r.title + '</b><br />' + r.datetitle + ", " + /*r.datefromnow +*/ '.<br />' + r.resume + '<br />'
+			popup: '<img width="50%" style="float:left;margin-right: 10px;" src="' + r.img + '"/><b>' + r.title + '</b><br />' + r.datetitle + ", " + /*r.datefromnow +*/ '.<br /><p style="text-align:justify;">' + r.resume + '</p><br />'
 		};
 	},
 		
