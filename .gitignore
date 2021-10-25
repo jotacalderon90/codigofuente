@@ -9,14 +9,14 @@ node_modules/*
 
 #dependencias de lado cliente
 #################
-app/frontend/assets/bower_components/*
+frontend/assets/bower_components/*
 
 #images
-app/frontend/assets/media/img/blog/*
-app/frontend/assets/media/img/product/*
-app/frontend/assets/media/img/story/*
+frontend/assets/media/img/blog/*
+frontend/assets/media/img/product/*
+frontend/assets/media/img/story/*
 
 #package-lock
 #################
 package-lock.json
-app/backend/log/*
+backend/log/*
