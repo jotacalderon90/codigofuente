@@ -43,7 +43,7 @@ una vez instalado volver a ejecutar el comando anterior
 bower install
 ```
 este programa permite descargar las dependencias que el programa necesita para hacer funcionar el cliente/frontend
-las dependencias son otros códigos fuentes y se quedaran alojados en la carpeta app/frontend/node_modules/assets/bower_components
+las dependencias son otros códigos fuentes y se quedaran alojados en la carpeta frontend/assets/bower_components
 una vez descargada todas las dependencias del cliente vamos a levantar el sistema
 ```sh
 node app

@@ -15,8 +15,8 @@ new Vue({
 		}
 		$(".loader").fadeOut();
 		
-		//const s = await this.promise.message.load('hola','message');
-		//console.log(s);
+		const s = await this.promise.message.load('hola','message');
+		alert(s);
 		
 		try{
 			const a = await this.promise.prompt.load('Test','');

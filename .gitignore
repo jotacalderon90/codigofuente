@@ -19,4 +19,4 @@ frontend/assets/media/img/story/*
 #package-lock
 #################
 package-lock.json
-backend/log/*
+log.csv

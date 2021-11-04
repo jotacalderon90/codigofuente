@@ -1,4 +1,8 @@
+"use strict";
+
 const fs = require("fs");
+
+const logger = require('./log')('lib.render');
 
 const self = function(){
 	
@@ -132,7 +136,7 @@ self.prototype.processRepeat = function(content,doc){
 	try{
 		var length = (eval(objectRepeat)).length;
 	}catch(e){
-		console.log(e);
+		logger.info(e);
 		var length = 0;
 	}		
 	var repeat_content = this.extractIn(content,"<!--repeat:" + objectRepeat + "-->", "<!--/repeat:" + objectRepeat + "-->");		
@@ -188,7 +192,7 @@ self.prototype.processSubrepeat = function(content,doc,index){
 	try{
 		var length = (eval(objectRepeat)).length;
 	}catch(e){
-		console.log(e);
+		logger.info(e);
 		var length = 0;
 	}		
 	var repeat_content = this.extractIn(content,"<!--subrepeat:" + objectRepeat + "-->", "<!--/subrepeat:" + objectRepeat + "-->");		

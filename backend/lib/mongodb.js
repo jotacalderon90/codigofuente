@@ -3,6 +3,8 @@
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
 
+const logger = require('./log')('lib.mongodb');
+
 const self = function(){
 	
 }
@@ -102,9 +104,9 @@ self.prototype.updateOne = function(collection,id,document){
 					}
 				});
 			}catch(e){
-				console.log("ACTUALIZAR SEGUNDO INTENTO");
-				console.log("COLECCION: " + collection);
-				console.log("DOCUMENTO: " + JSON.stringify(document));
+				logger.info("ACTUALIZAR SEGUNDO INTENTO");
+				logger.info("COLECCION: " + collection);
+				logger.info("DOCUMENTO: " + JSON.stringify(document));
 				this.db.collection(collection)['updateOne']({_id: new mongodb.ObjectID(id)}, document, (error, data) => {
 					if (error){
 						return reject(error);

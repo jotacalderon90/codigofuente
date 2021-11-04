@@ -69,12 +69,7 @@
 		});
 		express.set("views", config.dir + config.properties.views);
 		express.set("view engine", "html");
-
-		logger.info('public default files');
-		express.get('/favicon.ico', function(req,res){ res.sendFile(__dirname + '/frontend/assets/media/img/favicon.ico')});
-		express.get('/robots.txt', function(req,res){ res.sendFile(__dirname + '/frontend/assets/media/doc/robots.txt')});
-		express.get('/sw.js', function(req,res){ res.sendFile(__dirname + '/frontend/assets/pwa/sw.js')});
-
+		
 		logger.info('public default folder');
 		express.use('/', ex.static(__dirname + '/frontend'));
 		

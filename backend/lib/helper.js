@@ -4,11 +4,12 @@ const crypto = require("crypto");
 const fs	 = require("fs");
 const http 	 = require("http");
 const https  = require("https");
+
+const logger = require('./log')('lib.helper');
 const jwt = require('./jwt');
 const mongodb  = require("./mongodb");
 const readline = require('./readline');
 const push = require('./push');
-const logger = require('./log')('lib.helper');
 
 const self = function(){
 	if(config.recaptcha && config.recaptcha.enabled===true){
@@ -184,8 +185,7 @@ self.prototype.getDefaultData = async function(){
 		};
 		return data;
 	}catch(e){
-		console.log('getDefaultDataERROR');
-		console.log(e);
+		logger.info(e);
 		return {};
 	}
 }
@@ -204,9 +204,9 @@ self.prototype.insertUserIfNotExist = async function(req){
 		u.created = new Date();
 		u.activate = true;
 		await mongodb.insertOne("user",u);
-		console.log("nuevo usuario insertado");
+		logger.info("nuevo usuario insertado");
 	}else{
-		console.log("usuario ya insertado: " + e);
+		logger.info("usuario ya insertado: " + e);
 	}
 }
 
