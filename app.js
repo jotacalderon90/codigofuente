@@ -65,7 +65,10 @@
 		logger.info('import render');
 		const render = require('./backend/lib/render');
 		express.engine("html", (filePath,data,callback)=>{
-			return callback(null, render.processTemplate(fs.readFileSync(filePath,"utf8").toString(),data));
+			//return callback(null, render.processTemplate(fs.readFileSync(filePath,"utf8").toString(),data));
+			filePath = filePath.split('/').join('\\');
+			filePath = filePath.replace(config.dir + config.properties.views.split('/').join('\\'), '');
+			return callback(null, render.process(filePath,data));
 		});
 		express.set("views", config.dir + config.properties.views);
 		express.set("view engine", "html");

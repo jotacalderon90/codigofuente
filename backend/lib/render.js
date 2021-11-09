@@ -9,8 +9,8 @@ const self = function(){
 }
 
 self.prototype.process = function(templatename, doc){
-	let template = fs.readFileSync(config.dir + config.properties.views + templatename,'utf8');
-	return this.processTemplate(template,doc);
+	//implementar sistema de cache
+	return this.processTemplate(fs.readFileSync(config.dir + config.properties.views + templatename,'utf8'),doc);
 }
 
 self.prototype.processTemplate = function(template,doc){
@@ -110,6 +110,9 @@ self.prototype.isProcessTemplate = function(template){
 		this.toDo = "if";
 		return false;
 	}
+	
+	//cachear template sin data
+	
 	if(template.indexOf("{{data:")>-1){
 		this.toDo = "data";
 		return false;
