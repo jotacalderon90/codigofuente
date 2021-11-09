@@ -98,8 +98,8 @@ const canShowInactive = function(req){
 	}
 }
 
-const paramsToRender = function(req,action,data){
-	return {...helper.toRender(req), onOpen: {app: object, action: action, data: data}};
+const paramsToRender = async function(req,action,data){
+	return {...await helper.toRender(req), onOpen: {app: object, action: action, data: data}};
 }
 
 start();
@@ -131,9 +131,9 @@ module.exports = {
 					title: data[0].title,
 					description: data[0].resume, 
 					keywords: object + ',' + data[0].tag.join(','),
-					author: data[0].author,
+					author: data[0].author.nickname,
 					img: data[0].img,
-					...paramsToRender(req,'openRow',data[0])
+					...await paramsToRender(req,'openRow',data[0])
 				});
 			}
 		}catch(e){
@@ -147,7 +147,7 @@ module.exports = {
 			if(req.user==null || !helper.hasRole(req,['root','admin',object])){throw(401);}
 			
 			const row = await mongodb.findOne(object,req.params.id);
-			res.render("index",paramsToRender(req,'editByServer',row));	
+			res.render("index",await paramsToRender(req,'editByServer',row));	
 		}catch(e){
 			helper.onError(req,res,e);
 		}

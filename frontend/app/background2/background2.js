@@ -15,7 +15,7 @@
 	/* Place Supersized Elements
 	----------------------------*/
 	$(document).ready(function() {
-		$('body').append('<div id="supersized-loader"></div><ul id="supersized"></ul>');
+		$('body').append('<ul id="supersized"></ul>');
 	});
     
     
@@ -217,7 +217,6 @@
 		base.launch = function(){
 		
 			base.$el.css('visibility','visible');
-			$('#supersized-loader').remove();		//Hide loading animation
 			
 			// Call theme function for before slide transition
 			if( typeof theme != 'undefined' && typeof theme.beforeAnimation == "function" ) theme.beforeAnimation('next');
@@ -960,24 +959,17 @@ app.modules.background2 = new trascender({
 	showApp: function(){
 		return true;
 	},
-	onload: function(){
+	onload: async function(){
+		this.service_collection = this.serviceCreate('GET','/api/background/collection');
+		const coll = (await this.service_collection()).map((r)=>{return {image: r};});
 		jQuery(function($) {
 			$.supersized({    
-				slides: [{
-					image: 'assets/media/img/background2/01.jpg'
-				},{
-					image: 'assets/media/img/background2/02.jpg'
-				},{
-					image: 'assets/media/img/background2/03.jpg'
-				},{
-					image: 'assets/media/img/background2/04.jpg'
-				},{
-					image: 'assets/media/img/background2/05.jpg'
-				}]
+				slides: coll
 			});
 		});
 	},
 	open: function(){
-		$('#background2_modal_form').modal('show');
+		//$('#background2_modal_form').modal('show');
+		this.parent.gallery.read('background2');
 	}
 });

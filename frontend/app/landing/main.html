@@ -34,12 +34,14 @@
 					</a>
 				</div>
 				
-				<h2 data-dismiss="modal" data-ng-click="ctrl.pushStory('#landing_modal_main');ctrl.product.open()">Catálogo de productos y servicios</h2>
+				<a href="/product" class="encabezado">Catálogo de productos y servicios</a>
 				<div id="landing_product" class="row">
 					<!--repeat:doc.landing.product-->
-					<article class="col-md-3" data-dismiss="modal" data-toggle="modal" data-target="#product_modal_document" data-ng-click="ctrl.pushStory('#landing_modal_main');ctrl.product.read('{{data:doc.landing.product[index]._id}}')">
+					<article class="col-md-3">
 						<img src="{{data:doc.landing.product[index].img}}" alt="{{data:doc.landing.product[index].resume}}" title="{{data:doc.landing.product[index].title}}" />
-						<h3>{{data:doc.landing.product[index].title}}</h3>
+						<a href="/product/{{data:doc.landing.product[index].uri}}">
+							<h3>{{data:doc.landing.product[index].title}}</h3>
+						</a>
 					</article>
 					<!--/repeat:doc.landing.product-->
 				</div>
@@ -54,12 +56,14 @@
 				
 				<!--include:about/component.content-->
 				
-				<h2 data-dismiss="modal" data-ng-click="ctrl.pushStory('#landing_modal_main');ctrl.blog.open()">Últimas notas del blog</h2>
+				<a href="/blog" class="encabezado">Blog</a>
 				<div id="landing_blog" class="row">
 					<!--repeat:doc.landing.blog-->
-					<article class="col-md-4" data-dismiss="modal" data-toggle="modal" data-target="#blog_modal_document" data-ng-click="ctrl.pushStory('#landing_modal_main');ctrl.blog.read('{{data:doc.landing.blog[index]._id}}')">
+					<article class="col-md-4">
 						<img src="{{data:doc.landing.blog[index].img}}" alt="{{data:doc.landing.blog[index].resume}}" title="{{data:doc.landing.blog[index].title}}"  />
-						<h3>{{data:doc.landing.blog[index].title}}</h3>
+						<a href="/blog/{{data:doc.landing.blog[index].uri}}">
+							<h3>{{data:doc.landing.blog[index].title}}</h3>
+						</a>
 					</article>
 					<!--/repeat:doc.landing.blog-->
 				</div>

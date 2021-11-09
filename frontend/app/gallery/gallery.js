@@ -91,7 +91,6 @@ app.modules.gallery = new trascender({
 		}
 	},
 		
-		
 	openCarousel: function(index){
 		this.index_image = index;
 		this.refreshCarousel();

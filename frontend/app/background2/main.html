@@ -1,0 +1,22 @@
+<div class="modal fade" id="about_modal_main">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">{{ctrl.about.properties.label}}</h4>
+				<!--include:view/btn.close-->
+			</div>
+			<div class="modal-body">
+				<!--include:about/component.content-->
+			</div>
+			<div class="modal-footer-bg" data-ng-show="ctrl.about.editHTML.canEdit"></div>
+			<div class="modal-footer" data-ng-show="ctrl.about.editHTML.canEdit">
+				<button type="button" class="btn btn-primary" title="Editar" data-ng-show="ctrl.about.editHTML.action!='edit'" data-ng-click="ctrl.about.editHTML.edit()"> 
+					<i class="fa fa-pencil"></i>
+				</button>
+				<button type="button" class="btn btn-primary" title="Guardar" data-ng-show="ctrl.about.editHTML.action=='edit'" data-ng-click="ctrl.about.editHTML.save()"> 
+					<i class="fa fa-save"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

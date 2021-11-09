@@ -240,6 +240,7 @@ module.exports = function(express){
 	/*BACKGROUND*/
 	/************/
 	express.post('/api/background/image', api.background.upload);
+	express.get('/api/background/collection', api.background2.collection);
 	
 	/*********/
 	/*MAILING*/

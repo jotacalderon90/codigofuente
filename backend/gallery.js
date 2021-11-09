@@ -83,7 +83,7 @@ module.exports = {
 				await helper.upload_process(req.files.file, directory + req.params.id + '/' + req.files.file.name);
 			}
 			
-			res.redirect("/gallery");
+			res.redirect("/");
 			
 		}catch(e){
 			helper.onError(req,res,e);
