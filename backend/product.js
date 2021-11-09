@@ -106,7 +106,12 @@ start();
 
 module.exports = {
 	renderCollection: async function(req,res){
-		helper.render(req,res,'index',{app: object, action: 'open'});
+		try{
+			req.user = await helper.getUser(req);
+			helper.render(req,res,'index',{app: object, action: 'open'});
+		}catch(e){
+			helper.onError(req,res,e);
+		}
 	},
 	renderCollectionTag: async function(req,res){
 		helper.render(req,res,'index',{app: object, action: 'getByTag2', data: req.params.id});
