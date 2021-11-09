@@ -15,13 +15,15 @@ app.controller("ctrl", function($scope){
 		}
 		
 		this.menu.fadeOut();
+		
 		this.pushStory(null);
-		this.pushStory('#menu_modal_list');
 		
 		if(onOpen!==undefined){
+			this.pushStory('#landing_modal_main');
 			this[onOpen.app][onOpen.action](onOpen.data);
 			$(".loader").fadeOut();
 		}else{
+			this.pushStory('#menu_modal_list');
 			this.refreshView();
 			this.landing.open();
 			$(".loader").fadeOut();
