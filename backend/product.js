@@ -123,6 +123,7 @@ module.exports = {
 	},
 	renderDocument: async function(req,res){
 		try{	
+			req.user = await helper.getUser(req);
 			const data = await mongodb.find(object,{uri:req.params.id});
 			if(data.length!=1){
 				throw("No se encontró el documento solicitado");
