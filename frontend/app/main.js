@@ -18,6 +18,7 @@ app.controller("ctrl", function($scope){
 		
 		this.pushStory(null);
 		
+		console.log(onOpen);
 		if(onOpen!==undefined){
 			this.pushStory('#landing_modal_main');
 			this[onOpen.app][onOpen.action](onOpen.data);

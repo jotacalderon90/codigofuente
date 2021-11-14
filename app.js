@@ -17,10 +17,12 @@
 		logger.info('import fs');
 		const fs = require('fs');
 		
+		logger.info('import helper');
+		const helper = require('./backend/lib/helper');
+			
 		logger.info('check first run');
 		if(!fs.existsSync('log.csv')){
 			logger.info('execute first run');
-			const helper = require('./backend/lib/helper');
 			await helper.firstRun();
 		}
 
@@ -80,8 +82,7 @@
 		require('./backend')(express);
 
 		express.use(function(req,res,next){
-			logger.info("404 " + req.originalUrl);
-			res.sendStatus(404);
+			helper.render404(req,res);
 		});
 
 		logger.info('import http');

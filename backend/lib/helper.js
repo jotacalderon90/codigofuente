@@ -296,8 +296,8 @@ self.prototype.toRender = async function(req,btn){
 	return {user: req.user, ip: this.getRealIP(req), headers: req.headers, pushcode: push.publicKey, landing: await this.getDefaultData(), btnCloseToIndex: btn || false};
 }
 
-self.prototype.toRenderError = async function(req,e){
-	return {...this.toRender(req,true), onOpen: {app: "promise", action: "messageFromServer", data: {title: "Error en el Servidor", msg: e.toString(), class: "danger"}}};
+self.prototype.toRenderError = function(req,e){
+	return {/*...this.toRender(req,true), */onOpen: {app: "promise", action: "messageFromServer", data: {title: e.title|| "Error en el Servidor", msg: e.msg || e.toString(), class: "danger"}}};
 }
 
 self.prototype.toRenderSuccess = async function(req,t,e,c){
@@ -319,14 +319,20 @@ self.prototype.onErrorAPI = function(req,res,e){
 self.prototype.onErrorRENDER = function(req,res,e){
 	if(e==401){
 		req.session.redirectTo = req.url;
-		res.status(401).render("500", this.toRenderError(req,e));
+		res.status(401).render("message", this.toRenderError(req,e));
 	}else{
-		res.status(500).render("500", this.toRenderError(req,e));
+		res.status(500).render("message", this.toRenderError(req,e));
 	}
 }
 
 self.prototype.render404 = function(req,res){
-	res.sendStatus(404);
+	logger.info("404 " + req.originalUrl);
+	res.status(404).render("message", this.toRenderError(req,{title: 'No encontramos respuesta a su solicitud', msg: 'La URL ' +  req.originalUrl + ' no pudo ser procesada'}));
+}
+
+self.prototype.renderHtml = function(data,req,res){
+	res.set('Content-Type', 'text/html');
+	res.send(Buffer.from('<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="keywords" content="' + ((data[0].tag)?data[0].tag.join(','):'') + '" /><meta name="description" content="' + data[0].resume + '" /><meta name="Author" content="' + config.properties.host + '" /><title>' + data[0].title + '</title></head><body>' + data[0].content + '</body></html>'));
 }
 
 self.prototype.saveUser = function(user){

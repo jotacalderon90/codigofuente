@@ -46,8 +46,10 @@ module.exports = function(express){
 	express.get('/blog', api.blog.renderCollection);
 	express.get('/blog/categoria/:id', api.blog.renderCollectionTag);
 	express.get('/blog/new', api.blog.new);
+	express.get('/blog/:id.html', api.blog.renderHtml);
 	express.get('/blog/:id', api.blog.renderDocument);
 	express.get('/blog/edit/:id', api.blog.edit);
+	
 	express.get('/api/blog/total', api.blog.total);
 	express.get('/api/blog/collection', api.blog.collection);
 	express.get('/api/blog/tag/collection', api.blog.tag);

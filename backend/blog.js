@@ -126,6 +126,18 @@ module.exports = {
 			helper.onError(req,res,e);
 		}
 	},
+	renderHtml: async function(req,res){
+		try{
+			const data = await mongodb.find(object,{uri:req.params.id});
+			if(data.length!=1){
+				throw("No se encontró el documento solicitado");
+			}else{
+				helper.renderHtml(data,req,res);
+			}
+		}catch(e){
+			helper.onError(req,res,e);
+		}
+	},
 	renderDocument: async function(req,res){
 		try{
 			req.user = await helper.getUser(req);
