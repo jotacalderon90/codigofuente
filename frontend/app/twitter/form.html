@@ -5,12 +5,12 @@
 				<button type="button" class="left btn-head" title="documento" data-dismiss="modal" data-toggle="modal" data-target="#twitter_modal_document" data-ng-click="ctrl.pushStory('#twitter_modal_form');ctrl.twitter.read(ctrl.twitter.getDoc()._id)" data-ng-show="!ctrl.twitter.isCreateMode()">
 					<i class="fa fa-wpforms"></i>
 				</button>
-				<h4 class="modal-title" data-ng-show="ctrl.twitter.isCreateMode()">
+				<span class="modal-title" data-ng-show="ctrl.twitter.isCreateMode()">
 					twitter <small>Nuevo</small>
-				</h4>
-				<h4 class="modal-title" data-ng-show="ctrl.twitter.isReadMode() || ctrl.twitter.isEditMode()">
+				</span>
+				<span class="modal-title" data-ng-show="ctrl.twitter.isReadMode() || ctrl.twitter.isEditMode()">
 					{{ctrl.twitter.doc.title}}
-				</h4>
+				</span>
 				<!--include:view/btn.close-->
 			</div>
 			<div class="modal-body text-justify">

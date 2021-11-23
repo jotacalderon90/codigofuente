@@ -110,6 +110,11 @@ iframe{
 	line-height: 15px;
 	margin-top: 15px;
 }
+.modal-header span.modal-title{
+	font-weight: 500;
+	font-size: 18px;
+	display: block;
+}
 button.close{
 	background: black;
 	opacity: 1;
@@ -379,4 +384,25 @@ textarea.cke_source{
 
 .autoheight {
     height:100%;
+}
+
+
+/*APP:MESSAGE*/
+.message_form{
+	color: black;
+	margin-bottom: 0px;
+	padding: 25px;
+}
+.message_form .form-control{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 0px;
+	color: black;
+	background: white;
+	border: 1px solid black;
+}
+.message_form button{
+	background: black;
+	color: white;
+	border-radius: 0px;
 }

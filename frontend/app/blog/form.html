@@ -5,12 +5,12 @@
 				<button type="button" class="left btn-head" title="documento" data-dismiss="modal" data-toggle="modal" data-target="#blog_modal_document" data-ng-click="ctrl.pushStory('#blog_modal_form');ctrl.blog.read(ctrl.blog.getDoc()._id)" data-ng-show="!ctrl.blog.isCreateMode()">
 					<i class="fa fa-wpforms"></i>
 				</button>
-				<h4 class="modal-title" data-ng-show="ctrl.blog.isCreateMode()">
+				<span class="modal-title" data-ng-show="ctrl.blog.isCreateMode()">
 					Blog <small>Nuevo</small>
-				</h4>
-				<h4 class="modal-title" data-ng-show="ctrl.blog.isReadMode() || ctrl.blog.isEditMode()">
+				</span>
+				<span class="modal-title" data-ng-show="ctrl.blog.isReadMode() || ctrl.blog.isEditMode()">
 					{{ctrl.blog.doc.title}}
-				</h4>
+				</span>
 				<!--include:view/btn.close-->
 			</div>
 			<div class="modal-body text-justify">

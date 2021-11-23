@@ -5,9 +5,9 @@
 				<button type="button" class="left btn-head" title="Editar" data-ng-show="ctrl.twitter.canEdit()" data-ng-click="ctrl.pushStory('#twitter_modal_document');ctrl.twitter.edit()" data-dismiss="modal" data-toggle="modal" data-target="#twitter_modal_form">
 					<i class="fa fa-pencil"></i>
 				</button>
-				<h4 class="modal-title">
+				<span class="modal-title">
 					{{ctrl.twitter.doc.title}}
-				</h4>
+				</span>
 				<!--include:view/btn.close-->
 				<!--
 				NO SIRVE PORQUE DEJA EN LOOP EL TWITTER

@@ -27,7 +27,7 @@ app.modules.promise = new trascender({
 				}
 			});
 			$('#promise_modal_message .modal-footer').html(btn);
-			$('#promise_modal_message h4').html(title);
+			$('#promise_modal_message .modal-title').html(title);
 			$('#promise_modal_message p').html(message);
 			$('#promise_modal_message').modal('show');
 		});
@@ -45,7 +45,7 @@ app.modules.promise = new trascender({
 					resolve(this.value);
 				}
 			});
-			$('#promise_modal_prompt h4').html(title);
+			$('#promise_modal_prompt .modal-title').html(title);
 			$('#promise_modal_prompt .modal-body').html(input);
 			$('#promise_modal_prompt').modal('show');
 			
@@ -76,7 +76,7 @@ app.modules.promise = new trascender({
 				});
 				$('#promise_modal_selector .btn-group-vertical').append(btn);
 			}
-			$('#promise_modal_selector h4').html(title);
+			$('#promise_modal_selector .modal-title').html(title);
 			$('#promise_modal_selector').modal('show');
 		});
 	},

@@ -5,10 +5,10 @@
 				<button type="button" class="left btn-head" title="colección de datos" data-dismiss="modal" data-ng-click="ctrl.pushStory('#object_modal_form');ctrl.object.openAPPCollection()" data-ng-show="!ctrl.object.isCreateMode();">
 					<i class="fa fa-database"></i>
 				</button>
-				<h4 class="modal-title">
+				<span class="modal-title">
 					<span data-ng-show="ctrl.object.isCreateMode()">Nuevo objeto</span>
 					<span data-ng-show="ctrl.object.isReadMode() || ctrl.object.isEditMode()">Objeto {{ctrl.object.doc.label}}</span>
-				</h4>
+				</span>
 				<button type="button" class="right btn-head" data-dismiss="modal" data-ng-click="ctrl.close()">
 					<i class="fa fa-close"></i>
 				</button>
