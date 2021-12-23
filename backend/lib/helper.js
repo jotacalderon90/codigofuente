@@ -32,7 +32,7 @@ self.prototype.firstRun = async function(){
 
 self.prototype.importDefaultData = async function(){
 	let r;
-	const objects = JSON.parse(fs.readFileSync(config.dir + '/backend/lib/config/objects.json',"utf8"));
+	const objects = config.objects;
 	for(let i=0;i<objects.length;i++){
 		r = await mongodb.count("object",{name: objects[i].name});
 		if(r==0){

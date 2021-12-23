@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const config = JSON.parse(fs.readFileSync(__dirname + '/development.json','utf8'));
+const config = JSON.parse(fs.readFileSync(process.cwd() + '/config.json','utf8'));
 
 config.properties.views = '/frontend/app/';
 

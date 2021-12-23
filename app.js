@@ -68,19 +68,21 @@
 		const render = require('./backend/lib/render');
 		express.engine("html", (filePath,data,callback)=>{
 			return callback(null, render.processTemplate(fs.readFileSync(filePath,"utf8").toString(),data));
-			//filePath = filePath.split('/').join('\\');
-			//filePath = filePath.replace(config.dir + config.properties.views.split('/').join('\\'), '');
-			//return callback(null, render.process(filePath,data));
 		});
 		express.set("views", config.dir + config.properties.views);
 		express.set("view engine", "html");
 		
-		logger.info('public default folder');
-		express.use('/', ex.static(__dirname + '/frontend'));
+		express.use(function(req,res,next){
+			logger.request(helper.reqToLog(req));
+			next();
+		});
 		
 		logger.info('public routes');
 		require('./backend')(express);
 
+		logger.info('public default folder');
+		express.use('/', ex.static(__dirname + '/frontend'));
+		
 		express.use(function(req,res,next){
 			helper.render404(req,res);
 		});
