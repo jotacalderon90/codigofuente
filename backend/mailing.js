@@ -110,7 +110,7 @@ module.exports = {
 	},
 	pxmagico: async function(req,res){
 		try{
-			if(req.query.data){
+			if(req.query.data && req.query.data!='undefined'){
 				mongodb.updateOne('mailing',req.query.data,{$set: {view: true}});
 			}
 			res.sendFile(config.dir + '/frontend/assets/media/img/px.png','utf8');

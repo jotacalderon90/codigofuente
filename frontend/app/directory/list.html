@@ -50,12 +50,12 @@
 								
 								
 								<div class="btn-group" role="group" data-ng-show="ctrl.directory.isFile" >
-									<a class="btn btn-default" data-ng-href="{{ctrl.directory.fullnameDOWNLOAD}}" target="_blank" title="Descargar">
+									<a class="btn btn-default" href="/" data-ng-href="{{ctrl.directory.fullnameDOWNLOAD}}" target="_blank" title="Descargar">
 									<i class="fa fa-download"></i> Descargar
 									</a>
 								</div>
 								<div class="btn-group" role="group" data-ng-show="ctrl.directory.isFile" >
-									<a class="btn btn-default" data-ng-href="{{ctrl.directory.fullnameGET}}" target="_blank" title="Visualizar">
+									<a class="btn btn-default" href="/" data-ng-href="{{ctrl.directory.fullnameGET}}" target="_blank" title="Visualizar">
 									<i class="fa fa-eye"></i> Visualizar
 									</a>
 								</div>
@@ -72,7 +72,7 @@
 								<i class="fa fa-spin fa-spinner" data-ng-show="ctrl.directory.uploader.inprocess"></i>
 							</div>
 							
-							<form id="fileupload" method="post" action="" encType="multipart/form-data" data-ng-show="ctrl.directory.isFolder && ctrl.directory.canAdmin()">
+							<form id="fileupload" method="post" action="/" encType="multipart/form-data" data-ng-show="ctrl.directory.isFolder && ctrl.directory.canAdmin()">
 								<input type="file" name="file" multiple/>
 								<button type="submit" class="btn btn-primary">Subir</button>
 							</form>

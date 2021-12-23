@@ -39,7 +39,6 @@
 						<button class="btn btn-block btn-primary" data-ng-click="ctrl.map.loadTopojson()" data-ng-show="ctrl.map.topojson_coll.length == 0">cargar lista de topojson</button>
 				
 						<select class="form-control" data-ng-show="ctrl.map.topojson_coll.length > 0" data-ng-model="ctrl.map.topo_json_coll_selected" data-ng-change="ctrl.map.loadTopojsonDATA(ctrl.map.topo_json_coll_selected)">
-							<option></option>
 							<option data-ng-repeat="t in ctrl.map.topojson_coll" value="{{t._id}}">{{t.name}}</option>
 						</select>
 					</div>

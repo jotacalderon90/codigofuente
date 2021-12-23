@@ -3,9 +3,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<span class="modal-title">Enviar correos</span>
-				<button type="button" class="right btn-head" data-ng-click="ctrl.mailing.marcar_todos()">
-					<input type="checkbox"  data-ng-model="ctrl.mailing.marcar_todo"/>
-				</button>
+				<input type="checkbox" class="right btn-head" data-ng-model="ctrl.mailing.marcar_todo" data-ng-change="ctrl.mailing.marcar_todos()"/>
 			</div>
 			<div class="modal-body text-justify">
 				<div class="list-group">

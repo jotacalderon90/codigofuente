@@ -197,6 +197,7 @@ app.modules.product = new trascender({
 				CKEDITOR.instances[this.properties.name + "_input_content"].setReadOnly(true);
 			break;
 			case 'edit':
+				$('#' + this.properties.name + '_modal_form form').attr('action',"/api/" + this.properties.name + "/" + ((this.doc)?this.doc._id:"") + "/image");
 				CKEDITOR.instances[this.properties.name + "_input_content"].setData(this.doc.content);
 				CKEDITOR.instances[this.properties.name + "_input_content"].setReadOnly(false);
 			break;
@@ -430,9 +431,6 @@ app.modules.product = new trascender({
 	default: function(){
 		return {title: '', tag: []};
 	},
-	getPostFileUpload: function(URL) {
-        return "/api/" + this.properties.name + "/" + ((this.doc)?this.doc._id:"") + "/image";
-    },	
 	titleOnBlur: function(){
 		if(this.action=="new"){
 			this.newdoc.uri = this.cleaner(this.newdoc.title);

@@ -28,7 +28,7 @@
 			<div class="modal-body text-justify">
 				
 				<div data-ng-repeat="row in ctrl.users.coll">
-					<a class="btn btn-primary btn-block" role="button" data-toggle="collapse" href="#users_user_action{{$index}}" aria-expanded="false" aria-controls="users_user_action{{$index}}">{{row.email}}</a>
+					<a class="btn btn-primary btn-block" role="button" data-toggle="collapse" href="/" data-ng-href="#users_user_action{{$index}}" aria-expanded="false" aria-controls="users_user_action{{$index}}">{{row.email}}</a>
 					<div class="collapse" id="users_user_action{{$index}}">
 						<div class="well">
 							<button class="btn btn-default btn-block" data-ng-click="ctrl.users.changeRoles(row)" title="actualizar roles">

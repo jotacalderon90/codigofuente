@@ -26,7 +26,6 @@
 				<div class="form-group">
 					<label>Tipo de envío</label>
 					<select class="form-control" data-ng-model="ctrl.mailing.newdoc.tipo_envio">
-						<option></option>
 						<option>plain</option>
 						<option>template</option>
 					</select>
@@ -40,7 +39,6 @@
 					<div class="form-group">
 						<label>Seleccione plantilla para enviar mails</label>
 						<select class="form-control" data-ng-model="ctrl.mailing.template" data-ng-change="ctrl.mailing.selectTemplate()">
-							<option></option>
 							<option data-ng-repeat="row in ctrl.mailing.templates">{{row}}</option>
 						</select>
 					</div>

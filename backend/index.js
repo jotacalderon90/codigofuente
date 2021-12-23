@@ -24,7 +24,6 @@ module.exports = function(express){
 	/*********/
 	express.get('/', api.default.renderHome);
 	express.get('/about', api.default.renderAbout);
-	express.get('/vue', api.default.renderVue);
 	express.get('/favicon.ico', api.default.favicon);
 	express.get('/robots.txt', api.default.robots);
 	express.post('/api/message', api.default.message);

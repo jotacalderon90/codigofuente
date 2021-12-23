@@ -26,7 +26,7 @@
 					<label>Imagen</label>
 					<br>
 					<img src="/assets/media/img/logo.png" data-ng-src="{{ctrl.twitter.getDoc().img}}"  height="200" alt="imagen de publicación" title="imagen de publicación"/>
-					<form method="post" action="{{ctrl.twitter.getPostFileUpload()}}" data-ng-show="ctrl.twitter.isEditMode()" enctype="multipart/form-data">
+					<form method="post" action="/" data-ng-show="ctrl.twitter.isEditMode()" enctype="multipart/form-data">
 						<input type="file" class="form-control" name="file"/>
 						<button type="submit" class="btn btn-primary">subir</button>
 					</form>

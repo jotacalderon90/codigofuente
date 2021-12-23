@@ -27,9 +27,6 @@ module.exports = {
 	robots: function(req,res){
 		res.sendFile(config.dir + '/frontend/assets/media/doc/robots.txt');
 	},
-	renderVue: async function(req,res){
-		helper.render(req,res,'indexVue');
-	},
 	message: async function(req,res){
 		try{
 			logger.request(helper.reqToLog(req));
